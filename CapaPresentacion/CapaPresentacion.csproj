@@ -6867,6 +6867,13 @@
     <Content Include="ListadoUsuario.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="PanelGeneral.aspx" />
+    <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\jquery-3.1.0.min.js" />
+    <Content Include="scripts\jquery-3.4.1.js" />
+    <Content Include="scripts\jquery-3.4.1.min.js" />
+    <Content Include="scripts\jquery-ui.min.js" />
+    <Content Include="scripts\jquery.min.js" />
+    <Content Include="scripts\jquery.ui.draggable.js" />
     <Content Include="scripts\Usuarios.js" />
     <Content Include="Web.config" />
   </ItemGroup>
