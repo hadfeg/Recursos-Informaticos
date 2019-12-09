@@ -6862,9 +6862,57 @@
     <Content Include="AdminLTE-2.4.0\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="AdminLTE-2.4.0\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="AdminLTE-2.4.0\starter.html" />
+    <Content Include="GestionLaptop.aspx" />
+    <Content Include="GestionUsuarios.aspx" />
+    <Content Include="ListadoUsuario.aspx" />
+    <Content Include="Login.aspx" />
+    <Content Include="PanelGeneral.aspx" />
+    <Content Include="scripts\Usuarios.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GestionLaptop.aspx.cs">
+      <DependentUpon>GestionLaptop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionLaptop.aspx.designer.cs">
+      <DependentUpon>GestionLaptop.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="GestionUsuarios.aspx.cs">
+      <DependentUpon>GestionUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionUsuarios.aspx.designer.cs">
+      <DependentUpon>GestionUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoUsuario.aspx.cs">
+      <DependentUpon>ListadoUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoUsuario.aspx.designer.cs">
+      <DependentUpon>ListadoUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MasterPage.Master.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MasterPage.Master.designer.cs">
+      <DependentUpon>MasterPage.Master</DependentUpon>
+    </Compile>
+    <Compile Include="PanelGeneral.aspx.cs">
+      <DependentUpon>PanelGeneral.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PanelGeneral.aspx.designer.cs">
+      <DependentUpon>PanelGeneral.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -7523,6 +7571,7 @@
     <Content Include="AdminLTE-2.4.0\plugins\input-mask\phone-codes\phone-codes.json" />
     <Content Include="AdminLTE-2.4.0\README.md" />
     <Content Include="AdminLTE-2.4.0\yarn.lock" />
+    <Content Include="MasterPage.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
