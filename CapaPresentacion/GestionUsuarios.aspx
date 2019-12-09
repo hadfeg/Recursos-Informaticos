@@ -85,7 +85,7 @@
                         <div class="form-group">
                             <asp:RadioButtonList ID="rblPerfil" runat="server" RepeatDirection="Horizontal" align="center" CellPadding="8">
                                 <asp:ListItem Value="1" Selected="True">Usuario</asp:ListItem>
-                                <asp:ListItem Value="2">Gerencial</asp:ListItem>
+                                <asp:ListItem Value="2">Gerencial</asp:ListItem>                                
                                 <asp:ListItem Value="3">Administradores de Áreas</asp:ListItem>
                                 <asp:ListItem Value="4">Administrador General</asp:ListItem>
                             </asp:RadioButtonList>
