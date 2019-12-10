@@ -75,6 +75,8 @@ namespace CapaAccesoDatos
                 cmd.Parameters.AddWithValue("@prmEmail", objUsuario.Mail);
                 cmd.Parameters.AddWithValue("@prmState", objUsuario.Estado);
                 cmd.Parameters.AddWithValue("@prmRut", objUsuario.Rut);
+                cmd.Parameters.AddWithValue("@prmEmpresa", objUsuario.Empresa);
+                cmd.Parameters.AddWithValue("@prmDepartamento", objUsuario.Departamento);
                 con.Open();
 
                 int filas = cmd.ExecuteNonQuery();
@@ -92,7 +94,6 @@ namespace CapaAccesoDatos
             }
             return response;
         }
-
         public DataSet ListarPerfil()
         {
             SqlConnection con = null;
@@ -157,7 +158,7 @@ namespace CapaAccesoDatos
                 con.Close();
             }
             return Lista;
-        }
+        }        
 
     }
 
