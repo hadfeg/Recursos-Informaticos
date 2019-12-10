@@ -47,7 +47,6 @@
         </div>
         <!-- End Datatable -->
     </section>
-
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
     <script src="scripts/Usuarios.js" type="text/javascript"></script>
