@@ -25,11 +25,11 @@ function addRowDT(data) {
             data[i].Name,
             data[i].LastName,
             data[i].Mail,
-            (data[i].Departamento == 0) ? "RRHH": "CONTRALORÍA",
+            data[i].Departamento,
             data[i].Empresa,
             data[i].Estado,
-            '<button type="button" value="Actualizar" title="Actualizar" class="btn btn-primary btn-edit" data-target="#imodal" data-toggle="modal"><i class="fa fa-check-square-o" aria-hidden="true"></i></button>&nbsp;' +
-            '<button type="button" value="Eliminar" title="Eliminar" class="btn btn-danger btn-delete"><i class="fa fa-minus-square-o" aria-hidden="true"></i></button>',
+            '<button type="button" value="Actualizar" title="Actualizar" class="btn btn-primary btn-edit" data-target="#imodalActualizar" data-toggle="modal"><i class="fas fa-check-square"></i></i></button>&nbsp;' +
+            '<button type="button" value="Eliminar" title="Eliminar" class="btn btn-danger btn-delete"><i class="fas fa-minus-circle"></i></i></button>',
         ]);            
     }
 }
@@ -80,6 +80,7 @@ $(document).ready(function () {
         }
     });
 });
+
 // cargar datos en el modal
 function fillModalData() {
     $("#txtRutModal").val(data[0]);
@@ -96,22 +97,20 @@ $(document).on('click', '.btn-edit', function (e) {
     var row = $(this).parent().parent()[0];
     data = tabla.fnGetData(row);
     fillModalData();
+    console.log(data);
 });
 
 // evento click para boton eliminar
 $(document).on('click', '.btn-delete', function (e) {
     e.preventDefault();
-
     //primer método: eliminar la fila del datatble
     var row = $(this).parent().parent()[0];
     var dataRow = tabla.fnGetData(row);
-
-    //segundo método: enviar el codigo del paciente al servidor y eliminarlo, renderizar el datatable
+    //segundo método: enviar el codigo del usuario al servidor y eliminarlo, renderizar el datatable
     // paso 1: enviar el id al servidor por medio de ajax
     deleteDataAjax(dataRow[0]);
     // paso 2: renderizar el datatable
     sendDataAjax();
-
 });
 
 
