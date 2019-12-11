@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 using CapaEntidades;
 using CapaLogicaNegocio;
 
@@ -14,7 +13,31 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {                
+                InicarLLenadoEmpresa();
+                InicarLLenadoDepartamento();
+            }
+        }
+        private void InicarLLenadoEmpresa()
+        {
+            ddlEmpresa.DataSource = EmpresaLN.getInstance().ListarEmpresa();
+            ddlEmpresa.DataTextField = "NombreEmpresa";
+            ddlEmpresa.DataValueField = "IdEmpresa";
+            ddlEmpresa.DataBind();
+            ddlEmpresa.Items.Insert(0, new ListItem("[Seleccione Empresa]"));
+            int cant = ddlEmpresa.Items.Count;
+            ddlEmpresa.Items.Insert(cant, new ListItem("[NUEVA EMPRESA]"));            
+        }
+        private void InicarLLenadoDepartamento()
+        {
+            ddlDepartamento.DataSource = DepartamentoLN.getInstance().ListarDepartamento();
+            ddlDepartamento.DataTextField = "NombreDepartamento";
+            ddlDepartamento.DataValueField = "IdDepartamento";
+            ddlDepartamento.DataBind();
+            ddlDepartamento.Items.Insert(0, new ListItem("[Seleccione Departamento]"));
+            int cant = ddlDepartamento.Items.Count;
+            ddlDepartamento.Items.Insert(cant, new ListItem("[NUEVO DEPARTAMENTO]"));            
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e) {
@@ -22,9 +45,8 @@ namespace CapaPresentacion
             Usuario objUsuario = new Usuario();
             objUsuario = GetEntity();           
             bool rut_valido = validarRut(objUsuario);
-
-            if (rut_valido) {
-
+            if (rut_valido)
+            {
                 bool response = UsuarioLN.getInstance().RegistrarUsuario(objUsuario);
 
                 if (response == true)
@@ -35,10 +57,10 @@ namespace CapaPresentacion
                 {
                     Response.Write("<script>alert('REGISTRO INCORRECTO.')</script>");
                 }
-            }else{
-
-                    Response.Write("<script>alert('Rut inválido, por favor intente nuevamente !!!')</script>");
-
+            }
+            else
+            {
+                Response.Write("<script>alert('Rut inválido, por favor intente nuevamente !!!')</script>");
             }
             
         }
@@ -53,9 +75,7 @@ namespace CapaPresentacion
                 rut = rut.Replace(".", "");
                 rut = rut.Replace("-", "");
                 int rutAux = int.Parse(rut.Substring(0, rut.Length - 1));
-
                 char dv = char.Parse(rut.Substring(rut.Length - 1, 1));
-
                 int m = 0, s = 1;
                 for (; rutAux != 0; rutAux /= 10)
                 {
@@ -70,22 +90,22 @@ namespace CapaPresentacion
             {
             }
             return validacion;
-
-
         }
 
         private Usuario GetEntity()
         {
             //int NivelAcceso = Convert.ToInt32(rbNivelAcceso.SelectedValue);
             Usuario objUsuario = new Usuario();
+            objUsuario.Rut = txtRut.Text;
             objUsuario.User = txtUsuario.Text;
+            objUsuario.Pass = txtContrasena.Text;
             objUsuario.Name = txtNombre.Text;
             objUsuario.LastName = txtApellido.Text;
-            objUsuario.Rut = txtRut.Text;
-            objUsuario.Mail = txtEmail.Text;
-            //objUsuario.Rol = Convert.ToInt32(ddlPerfil.SelectedValue);
-            //objUsuario.Estado = Convert.ToInt32(ddlEstado.SelectedValue);
-            objUsuario.Pass = txtContrasena.Text;
+            objUsuario.Rol = Convert.ToInt32(rblPerfil.SelectedValue);
+            objUsuario.Mail = txtEmail.Text;            
+            objUsuario.Estado = 0;
+            objUsuario.Departamento = Convert.ToInt32(ddlDepartamento.SelectedValue);
+            objUsuario.Empresa = Convert.ToInt32(ddlEmpresa.SelectedValue);
 
             /**
             if (NivelAcceso == 1)
@@ -110,7 +130,6 @@ namespace CapaPresentacion
         {
 
         }
-
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
 

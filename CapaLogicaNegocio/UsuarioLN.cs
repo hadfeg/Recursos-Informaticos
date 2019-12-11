@@ -70,7 +70,7 @@ namespace CapaLogicaNegocio
             {
                 throw ex;
             }
-        }
+        }      
 
     }
 }
