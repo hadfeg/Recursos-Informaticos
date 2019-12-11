@@ -85,9 +85,10 @@ $(document).ready(function () {
 function fillModalData() {
     $("#txtRutModal").val(data[0]);
     $("#txtNombreModal").val(data[1]);
-    $("#txtDirModal").val(data[3]);
-    $("#txtTelefonoModal").val(data[4]);
-    $("#txtCorreoModal").val(data[2]);
+    $("#txtApellidosModal").val(data[2]);
+    $("#txtEmpresaModal").val(data[5]);
+    $("#txtDepartamentoModal").val(data[4]);
+    $("#txtCorreoModal").val(data[3])
     //$("#txtPassModal").val(data[5]);
 }
 

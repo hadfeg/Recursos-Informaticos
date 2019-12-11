@@ -22,13 +22,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtRutModal;
         
         /// <summary>
-        /// Control txtDirModal.
+        /// Control txtCorreoModal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDirModal;
+        protected global::System.Web.UI.WebControls.TextBox txtCorreoModal;
         
         /// <summary>
         /// Control txtNombreModal.
@@ -40,31 +40,40 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtNombreModal;
         
         /// <summary>
-        /// Control txtCorreoModal.
+        /// Control txtApellidosModal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorreoModal;
+        protected global::System.Web.UI.WebControls.TextBox txtApellidosModal;
         
         /// <summary>
-        /// Control txtCorreoModal1.
+        /// Control txtEmpresaModal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCorreoModal1;
+        protected global::System.Web.UI.WebControls.TextBox txtEmpresaModal;
         
         /// <summary>
-        /// Control txtPassModal.
+        /// Control txtDepartamentoModal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPassModal;
+        protected global::System.Web.UI.WebControls.TextBox txtDepartamentoModal;
+        
+        /// <summary>
+        /// Control txtContrasenaModal.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtContrasenaModal;
         
         /// <summary>
         /// Control ddlPerfilModal.
@@ -74,5 +83,14 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPerfilModal;
+        
+        /// <summary>
+        /// Control ddlPerfilModal1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPerfilModal1;
     }
 }
