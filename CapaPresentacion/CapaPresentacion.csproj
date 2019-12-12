@@ -6862,10 +6862,12 @@
     <Content Include="AdminLTE-2.4.0\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="AdminLTE-2.4.0\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="AdminLTE-2.4.0\starter.html" />
+    <Content Include="EditarUsuario.aspx" />
     <Content Include="GestionLaptop.aspx" />
     <Content Include="GestionUsuarios.aspx" />
     <Content Include="ListadoUsuario.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Logout.aspx" />
     <Content Include="PanelGeneral.aspx" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-3.1.0.min.js" />
@@ -6875,9 +6877,23 @@
     <Content Include="scripts\jquery.min.js" />
     <Content Include="scripts\jquery.ui.draggable.js" />
     <Content Include="scripts\Usuarios.js" />
+    <Content Include="UserImages\c7f38b2e498104a5092e2d659fc358af.jpg" />
+    <Content Include="UserImages\CHEERS.jpg" />
+    <Content Include="UserImages\Entrevista Feria.jpeg" />
+    <Content Include="UserImages\IDEA.jpg" />
+    <Content Include="UserImages\InversionesFariasLogo.png" />
+    <Content Include="UserImages\ucn_logo_largo.png" />
+    <Content Include="UserImages\Yo.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EditarUsuario.aspx.cs">
+      <DependentUpon>EditarUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditarUsuario.aspx.designer.cs">
+      <DependentUpon>EditarUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="GestionLaptop.aspx.cs">
       <DependentUpon>GestionLaptop.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6905,6 +6921,13 @@
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>
