@@ -17,7 +17,7 @@
                             <label>NOMBRES</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtNombre" runat="server" Text="" CssClass="form-control" placeholder="Ej: María"></asp:TextBox>
+                            <asp:TextBox ID="txtNombre" runat="server" Text="" CssClass="form-control" placeholder="Ej: María"></asp:TextBox> 
                         </div>
                         <div class="form-group">
                             <label>APELLIDOS</label>
@@ -55,7 +55,6 @@
                                     <asp:ListItem Text="Recursos Humanos" Value="2"></asp:ListItem>
                                     <asp:ListItem Text="Finanzas" Value="3"></asp:ListItem>
                                     <asp:ListItem Text="Contabilidad" Value="4"></asp:ListItem>
-
                                 </asp:DropDownList>
                             </div>
                         
