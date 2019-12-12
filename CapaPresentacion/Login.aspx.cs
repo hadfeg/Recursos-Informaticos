@@ -57,12 +57,12 @@ namespace CapaPresentacion
              if (objUsuario != null)
              {
                  return true;
-                // Response.Write("<script>alert('Usuarios Correcto')</script>");
+                // Response.Write("<script>alert('Usuario Correcto')</script>");
              }
              else
              {
                  return false;
-                // Response.Write("<script>alert('Usuarios Incorrecto')</script>");
+                // Response.Write("<script>alert('Usuario Incorrecto')</script>");
              }            
         }
         private Usuario EncontrarUsuario(string Usuario, string Contrasena)
