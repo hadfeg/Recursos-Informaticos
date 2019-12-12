@@ -70,7 +70,20 @@ namespace CapaLogicaNegocio
             {
                 throw ex;
             }
-        }      
+        }
+        public bool Actualizar(Usuario objUsuario)
+        {
+            try
+            {
+                return UsuarioDAO.getInstance().Actualizar(objUsuario);
+
+            }
+            catch (Exception ex)
+            {
+                objUsuario = null;
+                throw ex;
+            }
+        }
 
     }
 }
