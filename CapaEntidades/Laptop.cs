@@ -10,7 +10,7 @@ namespace CapaEntidades
     {
         public String Serie { get; set; }
         public String NombreLaptop { get; set; }
-        public String Marca { get; set; }
+        public int IdMarca { get; set; }
         public String Modelo { get; set; }
         public String Procesador { get; set; }
         public String Ram { get; set; }
@@ -24,7 +24,7 @@ namespace CapaEntidades
         public String Comentario { get; set; }
         public String Estado { get; set; }
         public String MAC { get; set; }
-        public String SistOperativo { get; set; }
+        public int IdSistOperativo { get; set; }
         public String Rut_Usuario { get; set; }       
         public Laptop() { }
     }

@@ -13,13 +13,22 @@ namespace CapaPresentacion {
     public partial class GestionarLaptop {
         
         /// <summary>
-        /// Control txtSerieEquipo.
+        /// Control txtSerie.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSerieEquipo;
+        protected global::System.Web.UI.WebControls.TextBox txtSerie;
+        
+        /// <summary>
+        /// Control DropDownList1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
         
         /// <summary>
         /// Control txtMarca.
@@ -49,13 +58,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtHDD;
         
         /// <summary>
-        /// Control txTSistemaOp.
+        /// Control ddlSO.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txTSistemaOp;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSO;
+        
+        /// <summary>
+        /// Control txtSO.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSO;
         
         /// <summary>
         /// Control txtEstado.
@@ -85,13 +103,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtFechaEntrega;
         
         /// <summary>
-        /// Control txtNombreE.
+        /// Control txtNombreEquipo.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreE;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreEquipo;
         
         /// <summary>
         /// Control txtModelo.
@@ -148,13 +166,13 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtFechaMantencion;
         
         /// <summary>
-        /// Control txtComentarios.
+        /// Control txtComentario.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtComentarios;
+        protected global::System.Web.UI.WebControls.TextBox txtComentario;
         
         /// <summary>
         /// Control btnRegistrar.

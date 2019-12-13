@@ -39,22 +39,23 @@ namespace CapaPresentacion
             //int NivelAcceso = Convert.ToInt32(rbNivelAcceso.SelectedValue);
             Laptop objLaptop = new Laptop();
            
-            //objLaptop.Serie = txtSerie.Text;
-            objLaptop.Marca = txtMarca.Text;
+            objLaptop.Serie = txtSerie.Text;
+            objLaptop.IdMarca = Convert.ToInt32(txtMarca.Text);
             objLaptop.Modelo = txtModelo.Text;
             objLaptop.Ram = txtRam.Text;
-           // objLaptop.NombreLaptop = txtNombreEquipo.Text;
+            objLaptop.NombreLaptop = txtNombreEquipo.Text;
             objLaptop.Procesador = txtProcesador.Text;
             objLaptop.MAC = txtMac.Text;
             objLaptop.IDTeamviewer = Convert.ToInt32(txtTeamViewerID.Text);
             objLaptop.FechaCompra = Convert.ToDateTime(txtFechaCompra.Text);
             objLaptop.FechaEntrega = Convert.ToDateTime(txtFechaEntrega.Text);
             objLaptop.FechaUltimaMantencion = Convert.ToDateTime(txtFechaMantencion.Text);
-            //objLaptop.Estado = txtEstado.Text;
-            //objLaptop.Opcional = txtOpcional.Text;
-            //objLaptop.Comentario = txtComentario.Text;            
-            //objLaptop.SistOperativo = txtSO.Text;
+            objLaptop.Estado = txtEstado.Text;
+            objLaptop.Opcional = txtOpcional.Text;
+            objLaptop.Comentario = txtComentario.Text;            
+            objLaptop.IdSistOperativo = Convert.ToInt32(txtSO.Text);
             objLaptop.HDD = Convert.ToInt32(txtHDD.Text);
+
             /**
             if (NivelAcceso == 1)
             {
@@ -81,7 +82,30 @@ namespace CapaPresentacion
 
         }
 
-        
+        private void llenarDDLMarca()
+        {
+            ddlSO.DataSource = MarcaLN.getInstance().ListarDepartamento();
+            ddlSO.DataTextField = "Marca";
+            ddlSO.DataValueField = "IdMarca";
+            ddlSO.DataBind();
+            ddlSO.Items.Insert(0, new ListItem("[Seleccione Departamento]"));
+            int cant = ddlSO.Items.Count;
+            ddlSO.Items.Insert(cant, new ListItem("[NUEVO DEPARTAMENTO]"));
+
+        }
+
+        private void llenarDDLSO()
+        {
+            ddlSO.DataSource = SistemaOperativoLN.getInstance().ListarDepartamento();
+            ddlSO.DataTextField = "Marca";
+            ddlSO.DataValueField = "IdMarca";
+            ddlSO.DataBind();
+            ddlSO.Items.Insert(0, new ListItem("[Seleccione Departamento]"));
+            int cant = ddlSO.Items.Count;
+            ddlSO.Items.Insert(cant, new ListItem("[NUEVO DEPARTAMENTO]"));
+
+        }
+
     }
 
 }

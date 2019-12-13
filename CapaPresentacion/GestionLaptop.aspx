@@ -15,13 +15,14 @@
                             <label>SERIE DEL EQUIPO</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtSerieEquipo" runat="server" Text="" CssClass="form-control" placeholder=" "></asp:TextBox>
+                            <asp:TextBox ID="txtSerie" runat="server" Text="" CssClass="form-control" placeholder=" "></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <label>MARCA</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtMarca" runat="server" Text="" CssClass="form-control" placeholder="Ej: HP"></asp:TextBox>
+                            <asp:DropDownList ID ="DropDownList1" runat="server"></asp:DropDownList>
+                            <!--<asp:TextBox ID="txtMarca" runat="server" Text="" CssClass="form-control" placeholder="Ej: HP"></asp:TextBox>-->
                         </div>
                         <div class="form-group">
                             <label>PROCESADOR</label>
@@ -33,14 +34,15 @@
                             <label>HDD</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtHDD" runat="server" Text="" CssClass="form-control" placeholder="100 GB"></asp:TextBox>
+                            <asp:TextBox ID="txtHDD" runat="server" Text="" CssClass="form-control" placeholder="EJ: 100 GB (Ingrese solo el numero)"></asp:TextBox>
                         </div>                                   
                          
                         <div class="form-group">
                             <label>SISTEMA OPERATIVO</label>                            
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txTSistemaOp" runat="server" Text="" CssClass="form-control" placeholder="Ej: 100 GB"></asp:TextBox>
+                            <asp:DropDownList ID ="ddlSO" runat="server"></asp:DropDownList>
+                            <!--<asp:TextBox ID="txtSO" runat="server" Text="" CssClass="form-control" placeholder="Ej: Windows 10, macOSx, etc"></asp:TextBox>-->
                         </div>
                         <div class="form-group">
                             <label>ESTADO</label>
@@ -70,37 +72,37 @@
                             <label>NOMBRE DEL EQUIPO</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtNombreE" runat="server" Text="" CssClass="form-control" placeholder="LAPT-YHADFEG"></asp:TextBox>
+                            <asp:TextBox ID="txtNombreEquipo" runat="server" Text="" CssClass="form-control" placeholder="LAPT-YHADFEG"></asp:TextBox>
                         </div>                       
                         <div class="form-group">
                             <label>MODELO</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtModelo" runat="server" Text="" CssClass="form-control" type="text" placeholder=""></asp:TextBox>
+                            <asp:TextBox ID="txtModelo" runat="server" Text="" CssClass="form-control" type="text" placeholder="Inspiron 5567"></asp:TextBox>
                         </div> 
                         <div class="form-group">
                             <label>RAM</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtRam" runat="server" Text="" CssClass="form-control" type="text" placeholder=""></asp:TextBox>
+                            <asp:TextBox ID="txtRam" runat="server" Text="" CssClass="form-control" type="text" placeholder="16 GB"></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <label>MAC</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtMac" runat="server" Text="" CssClass="form-control" type="text" placeholder=""></asp:TextBox>
+                            <asp:TextBox ID="txtMac" runat="server" Text="" CssClass="form-control" type="text" placeholder="Ej:00:00:00:a1:2b:cc"></asp:TextBox>
                         </div>
                         <div class="form-group">
                             <label>TEAM VIEWER ID</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtTeamViewerID" runat="server" Text="" CssClass="form-control" type="text" placeholder="Ej: 1475154154"></asp:TextBox>
+                            <asp:TextBox ID="txtTeamViewerID" runat="server" Text="" CssClass="form-control" type="text" placeholder="Ej:1475154154"></asp:TextBox>
                         </div>  
                         <div class="form-group">
                             <label>OPCIONAL</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtOpcional" runat="server" Text="" CssClass="form-control" type="text" placeholder="Ej: 1475154154"></asp:TextBox>
+                            <asp:TextBox ID="txtOpcional" runat="server" Text="" CssClass="form-control" type="text" placeholder="Ej: Comentarios Opcionales"></asp:TextBox>
                         </div>          
 
                         <div class="form-group">
@@ -113,7 +115,7 @@
                             <label>COMENTARIOS</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtComentarios" runat="server" Text="" CssClass="form-control" type="text" placeholder="Ej: 1475154154"></asp:TextBox>
+                            <asp:TextBox ID="txtComentario" runat="server" Text="" CssClass="form-control" type="text" placeholder="Ej: Bateria de poca durabilidad,Pantalla trizada,etc."></asp:TextBox>
                         </div>                           
                     </div>
                 </div>

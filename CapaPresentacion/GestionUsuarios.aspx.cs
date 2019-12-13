@@ -25,7 +25,7 @@ namespace CapaPresentacion
             }
         }
         private void InicarLLenadoEmpresa()
-        {
+        {   
             ddlEmpresa.DataSource = EmpresaLN.getInstance().ListarEmpresa();
             ddlEmpresa.DataTextField = "NombreEmpresa";
             ddlEmpresa.DataValueField = "IdEmpresa";
@@ -66,8 +66,7 @@ namespace CapaPresentacion
             else
             {
                 Response.Write("<script>alert('Rut inválido, por favor intente nuevamente !!!')</script>");
-            }
-            
+            }            
         }
 
         private bool validarRut(Usuario objUser)
