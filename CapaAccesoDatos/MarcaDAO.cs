@@ -12,7 +12,7 @@ namespace CapaAccesoDatos
 {
     class MarcaDAO
     {
-
+        /*
         public bool RegistrarMarca(Marca objMarca )
         {
             SqlConnection con = null;
@@ -41,7 +41,7 @@ namespace CapaAccesoDatos
             }
             return response;
         }
-
+        */
 
     }
 }

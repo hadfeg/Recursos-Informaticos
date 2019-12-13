@@ -12,7 +12,7 @@ namespace CapaAccesoDatos
 {
     class SitemaOperativoDAO
     {
-
+        /*
         public bool Registrar(SistemaOperativo objSO)
         {
             SqlConnection con = null;
@@ -41,7 +41,7 @@ namespace CapaAccesoDatos
             }
             return response;
         }
-
+        */
 
     }
 }
