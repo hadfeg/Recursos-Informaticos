@@ -56,8 +56,8 @@ namespace CapaPresentacion
             objLaptop.Opcional = txtOpcional.Text;
             objLaptop.Comentario = txtComentario.Text;
             String val = ddlMarca.SelectedValue.ToString();
-            objLaptop.IdSistOperativo = Convert.ToInt32(ddlMarca.SelectedValue);
-            objLaptop.IdMarca = Convert.ToInt32(ddlSO.SelectedValue);
+            objLaptop.IdSistOperativo = Convert.ToInt32(ddlSO.SelectedIndex);
+            objLaptop.IdMarca = Convert.ToInt32(ddlMarca.SelectedIndex);
             objLaptop.HDD = Convert.ToInt32(txtHDD.Text);
 
             /**
@@ -104,7 +104,7 @@ namespace CapaPresentacion
             ddlSO.DataTextField = "SO";
             ddlSO.DataValueField = "IdSistemaOperativo";
             ddlSO.DataBind();
-            ddlSO.Items.Insert(0, new ListItem("[Seleccione SistemaOperativo]"));
+            ddlSO.Items.Insert(0, new ListItem("[Seleccione Sistema Operativo]"));
             int cant = ddlSO.Items.Count;
             ddlSO.Items.Insert(cant, new ListItem("[NUEVO SISTEMA OPERATIVO]"));
 
