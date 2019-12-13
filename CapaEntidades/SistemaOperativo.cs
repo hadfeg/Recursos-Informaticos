@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidades
 {
-    class SistemaOperativo
+    public class SistemaOperativo
     {
         public int IdSistemaOperativo { get; set; }
         public String SO { get; set; }

@@ -9,23 +9,23 @@ using System.Data.SqlClient;
 
 namespace CapaAccesoDatos
 {
-    public class MarcaDAO
+    public class SistemaOperativoDAO
     {
 
         #region "PATRON SINGLETON"
-        private static MarcaDAO daoMarca = null;
-        private MarcaDAO() { }
-        public static MarcaDAO getInstance()
+        private static SistemaOperativoDAO daoSistemaOperativo = null;
+        private SistemaOperativoDAO() { }
+        public static SistemaOperativoDAO getInstance()
         {
-            if (daoMarca == null)
+            if (daoSistemaOperativo == null)
             {
-                daoMarca = new MarcaDAO();
+                daoSistemaOperativo = new SistemaOperativoDAO();
             }
-            return daoMarca;
+            return daoSistemaOperativo;
         }
         #endregion
 
-        public bool RegistrarMarca(Marca objMarca )
+        public bool RegistrarSO(SistemaOperativo objSO)
         {
             SqlConnection con = null;
             SqlCommand cmd = null;
@@ -33,13 +33,14 @@ namespace CapaAccesoDatos
             try
             {
                 con = Conexion.getInstance().ConexionBD();
-                cmd = new SqlCommand("spRegistrarMarca", con);
+                cmd = new SqlCommand("spRegistrarSistemaOperativo", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@prmMarca", objMarca.marca);               
+                cmd.Parameters.AddWithValue("@prmMarca", objSO);
                 con.Open();
 
                 int filas = cmd.ExecuteNonQuery();
                 if (filas > 0) response = true;
+
             }
             catch (Exception ex)
             {
@@ -52,27 +53,29 @@ namespace CapaAccesoDatos
             }
             return response;
         }
-
-        public List<Marca> ListarMarcas()
+        
+        public List<SistemaOperativo> ListarSistemasOperativos()
         {
-            List<Marca> Lista = new List<Marca>();
+            List<SistemaOperativo> Lista = new List<SistemaOperativo>();
             SqlConnection con = null;
             SqlCommand cmd = null;
             SqlDataReader dr = null;
             try
             {
                 con = Conexion.getInstance().ConexionBD();
-                cmd = new SqlCommand("spListarMarcas", con);
+                cmd = new SqlCommand("spListarSistemasOperativos", con);
                 cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
                 dr = cmd.ExecuteReader();
                 while (dr.Read())
-                {
-                    // Crear objetos de tipo Usuario
-                    Marca objMarca = new Marca();
-                    objMarca.IdMarca = Convert.ToInt32(dr["IdMarca"].ToString());
-                    objMarca.marca = dr["Marca"].ToString();                    
-                    Lista.Add(objMarca);
+                {                  
+                    SistemaOperativo objSO = new SistemaOperativo();
+                    objSO.IdSistemaOperativo = Convert.ToInt32(dr["IdSO"].ToString());
+                    objSO.SO = dr["Nombre"].ToString();
+                    objSO.Version = float.Parse((dr["Version"].ToString()));
+                    objSO.ServiPack  = dr["Service_Pack"].ToString();
+                    objSO.Suscripcion= dr["Suscripcion"].ToString();                    
+                    Lista.Add(objSO);
                 }
             }
             catch (Exception ex)
@@ -85,5 +88,6 @@ namespace CapaAccesoDatos
             }
             return Lista;
         }
+
     }
 }

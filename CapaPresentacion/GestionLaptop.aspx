@@ -21,7 +21,7 @@
                             <label>MARCA</label>
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID ="DropDownList1" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID ="ddlMarca" runat="server" Width="580px" Height="30px"></asp:DropDownList>
                             <!--<asp:TextBox ID="txtMarca" runat="server" Text="" CssClass="form-control" placeholder="Ej: HP"></asp:TextBox>-->
                         </div>
                         <div class="form-group">
@@ -41,7 +41,7 @@
                             <label>SISTEMA OPERATIVO</label>                            
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID ="ddlSO" runat="server"></asp:DropDownList>
+                            <asp:DropDownList ID ="ddlSO" runat="server" Width="580px" Height="30px"></asp:DropDownList>
                             <!--<asp:TextBox ID="txtSO" runat="server" Text="" CssClass="form-control" placeholder="Ej: Windows 10, macOSx, etc"></asp:TextBox>-->
                         </div>
                         <div class="form-group">
