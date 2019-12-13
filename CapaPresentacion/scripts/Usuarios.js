@@ -26,8 +26,7 @@ function addRowDT(data) {
             data[i].LastName,
             data[i].Mail,
             data[i].Departamento,
-            data[i].Empresa,
-            data[i].Estado,
+            data[i].Empresa,            
             '<button type="button" value="Actualizar" title="Actualizar" class="btn btn-primary btn-edit" data-target="#imodalActualizar" data-toggle="modal"><i class="fas fa-check-square"></i></i></button>&nbsp;' +
             '<button type="button" value="Eliminar" title="Eliminar" class="btn btn-danger btn-delete"><i class="fas fa-minus-circle"></i></i></button>',
         ]);            

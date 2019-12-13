@@ -60,7 +60,7 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
-        public List<Usuario> ListarUsuario()
+        public List<UsuarioAJAX> ListarUsuario()
         {
             try
             {

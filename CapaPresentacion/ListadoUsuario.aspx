@@ -21,7 +21,7 @@
                                     <th>Email</th>
                                     <th>Departamento</th>
                                     <th>Empresa</th>
-                                    <th>Estado</th>
+                                    
                                     <th>Acciones</th>
                                 </tr>
                             </thead>
@@ -36,7 +36,7 @@
                                     <th>Email</th>
                                     <th>Departamento</th>
                                     <th>Empresa</th>
-                                    <th>Estado</th>
+                                    
                                     <th>Acciones</th>
                                 </tr>
                             </tfoot>
