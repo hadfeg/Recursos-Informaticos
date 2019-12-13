@@ -46,17 +46,14 @@
                                 <label>DEPARTAMENTO</label>
                             </div>
                             <div class="form-group">
-                                <asp:DropDownList ID="ddlDepto" runat="server" CssClass="form-control">                               
-                                </asp:DropDownList>
-                            </div>
-                        
+                                <asp:DropDownList ID="ddlDepto" runat="server" CssClass="form-control"></asp:DropDownList>
+                            </div>                        
                             <div>
                                 <label>NOMBRE DE USUARIO</label>
                             </div>
                             <div class="form-group">
                                 <asp:TextBox ID="txtUsuario" runat="server" Text="" CssClass="form-control" placeholder="Ej: AFARIAS"></asp:TextBox>
                             </div>
-
                             <div class="form-group">
                                 <label>CONTRASEÑA</label>
                             </div>

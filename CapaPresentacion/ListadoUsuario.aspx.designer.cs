@@ -49,22 +49,22 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.TextBox txtApellidosModal;
         
         /// <summary>
-        /// Control txtEmpresaModal.
+        /// Control ddlEmpresaModal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmpresaModal;
+        protected global::System.Web.UI.WebControls.DropDownList ddlEmpresaModal;
         
         /// <summary>
-        /// Control txtDepartamentoModal.
+        /// Control ddlDeptoModal.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDepartamentoModal;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDeptoModal;
         
         /// <summary>
         /// Control txtContrasenaModal.

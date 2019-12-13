@@ -161,7 +161,6 @@ namespace CapaAccesoDatos
             }
             return Lista;
         }
-
         public Usuario SeleccionarUsuario(String rut)
         {
             SqlConnection conexion = null;
@@ -204,7 +203,6 @@ namespace CapaAccesoDatos
             return objUsuario;
 
         }
-
         public bool Actualizar(Usuario objUsuario)
         {
             bool ok = false;
@@ -241,7 +239,32 @@ namespace CapaAccesoDatos
             }
             return ok;
         }
-
+        public bool Eliminar(String Rut)
+        {
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+            bool ok = false;
+            try
+            {
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("spEliminarUsuarioLogico", conexion);
+                cmd.Parameters.AddWithValue("@prmRut", Rut);
+                cmd.CommandType = CommandType.StoredProcedure;
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+                ok = true;
+            }
+            catch (Exception ex)
+            {
+                ok = false;
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return ok;
+        }
     }
 
 }
