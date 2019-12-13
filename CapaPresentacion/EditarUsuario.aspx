@@ -40,21 +40,13 @@
                             </div>
                             <div class="form-group">
                                 <asp:DropDownList ID="ddlEmpresa" runat="server" CssClass="form-control">
-
-                                    <asp:ListItem Text="Sin Empresa" Value="1"></asp:ListItem>
-                                    <asp:ListItem Text="Inversiones Farias" Value="2"></asp:ListItem>
-
                                 </asp:DropDownList>
                             </div>
                             <div class="form-group">
                                 <label>DEPARTAMENTO</label>
                             </div>
                             <div class="form-group">
-                                <asp:DropDownList ID="ddlDepto" runat="server" CssClass="form-control">
-                                    <asp:ListItem Text="Contraloría" Value="1"></asp:ListItem>
-                                    <asp:ListItem Text="Recursos Humanos" Value="2"></asp:ListItem>
-                                    <asp:ListItem Text="Finanzas" Value="3"></asp:ListItem>
-                                    <asp:ListItem Text="Contabilidad" Value="4"></asp:ListItem>
+                                <asp:DropDownList ID="ddlDepto" runat="server" CssClass="form-control">                               
                                 </asp:DropDownList>
                             </div>
                         

@@ -26,7 +26,7 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="login-logo">
-            <a>Farias <b>RecursosTI</b></a>
+            <a>Farias <b>Recursos TI</b></a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
@@ -36,11 +36,11 @@
                     <asp:Login ID="Login1" runat="server" OnAuthenticate="Login_Authenticate" EnableViewState="false" Width="100%">
                         <LayoutTemplate>
                             <div class="form-group has-feedback">
-                                <asp:TextBox ID="UserName" runat="server" class="form-control" placeholder="Email"></asp:TextBox>
+                                <asp:TextBox ID="UserName" runat="server" class="form-control" placeholder="Nombre de usuario"></asp:TextBox>
                                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
                             </div>
                             <div class="form-group has-feedback">
-                                <asp:TextBox ID="Password" runat="server" type="password" class="form-control" placeholder="Passwordss"></asp:TextBox>
+                                <asp:TextBox ID="Password" runat="server" type="password" class="form-control" placeholder="Contraseña"></asp:TextBox>
                                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                             </div>
                             <div class="row">

@@ -9,7 +9,7 @@
     <section class="content">
         <div class="row">
             <div class="col-md-6">
-                <div class="box box-primary">
+                <div class="box box-primary border border-dark rounded">
                     <div class="box-body">
                         <div class="form-group">
                             <label>RUT</label>
@@ -36,6 +36,8 @@
                             <label>E-MAIL</label>
                         </div>
                         <div class="form-group">
+
+                           
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" type="email" placeholder="Ej: nombre@gmail.cl"></asp:TextBox>
                             <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator" ControlToValidate="txtEmail" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
                                 Display="Dynamic" ErrorMessage="Correo inválido"></asp:RegularExpressionValidator>

@@ -17,7 +17,9 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session != null) {
-                this.UsrImg_Update.ImageUrl = Convert.ToString(Session["Image"]);                
+                this.UsrImg_Update.ImageUrl = Convert.ToString(Session["Image"]);
+                InicarLLenadoDepartamento();
+                InicarLLenadoEmpresa();
             }                                                   
         }
      
@@ -106,6 +108,26 @@ namespace CapaPresentacion
             Response.Redirect("PanelGeneral.aspx");
         }
 
-       
+        private void InicarLLenadoEmpresa()
+        {
+            ddlEmpresa.DataSource = EmpresaLN.getInstance().ListarEmpresa();
+            ddlEmpresa.DataTextField = "NombreEmpresa";
+            ddlEmpresa.DataValueField = "IdEmpresa";
+            ddlEmpresa.DataBind();
+            ddlEmpresa.Items.Insert(0, new ListItem("[Seleccione Empresa]"));
+            int cant = ddlEmpresa.Items.Count;
+            ddlEmpresa.Items.Insert(cant, new ListItem("[NUEVA EMPRESA]"));
+        }
+        private void InicarLLenadoDepartamento()
+        {
+            ddlDepto.DataSource = DepartamentoLN.getInstance().ListarDepartamento();
+            ddlDepto.DataTextField = "NombreDepartamento";
+            ddlDepto.DataValueField = "IdDepartamento";
+            ddlDepto.DataBind();
+            ddlDepto.Items.Insert(0, new ListItem("[Seleccione Departamento]"));
+            int cant = ddlDepto.Items.Count;
+            ddlDepto.Items.Insert(cant, new ListItem("[NUEVO DEPARTAMENTO]"));
+        }
+
     }
 }

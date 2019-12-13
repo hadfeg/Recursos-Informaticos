@@ -6868,6 +6868,16 @@
     <Content Include="ListadoUsuario.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
+    <Content Include="PageImages\Cuadrado Blanco.png" />
+    <Content Include="PageImages\Cuadrado.png" />
+    <Content Include="PageImages\Horizontal Blanco.png" />
+    <Content Include="PageImages\Horizontal.png" />
+    <Content Include="PageImages\Isotipo.png" />
+    <Content Include="PageImages\Marca Vertical.png" />
+    <Content Include="PageImages\Solo letra blanco.png" />
+    <Content Include="PageImages\Solo letra.png" />
+    <Content Include="PageImages\Vertical Blanco.png" />
+    <Content Include="PageImages\Vertical.png" />
     <Content Include="PanelGeneral.aspx" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\jquery-3.1.0.min.js" />
@@ -7626,6 +7636,7 @@
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
