@@ -18,9 +18,9 @@ namespace CapaPresentacion
 
         }
         [WebMethod]
-        public static List<Usuario> ListarUsuario()
+        public static List<UsuarioAJAX> ListarUsuario()
         {
-            List<Usuario> Lista = null;
+            List<UsuarioAJAX> Lista = null;
             try
             {
                 Lista = UsuarioLN.getInstance().ListarUsuario();

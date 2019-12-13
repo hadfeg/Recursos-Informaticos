@@ -121,9 +121,9 @@ namespace CapaAccesoDatos
             }
             return ds;
         }
-        public List<Usuario> ListarUsuario()
+        public List<UsuarioAJAX> ListarUsuario()
         {
-            List<Usuario> Lista = new List<Usuario>();
+            List<UsuarioAJAX> Lista = new List<UsuarioAJAX>();
             SqlConnection con = null;
             SqlCommand cmd = null;
             SqlDataReader dr = null;
@@ -137,14 +137,14 @@ namespace CapaAccesoDatos
                 while (dr.Read())
                 {
                     // Crear objetos de tipo Usuario
-                    Usuario objUsuario = new Usuario();
+                    UsuarioAJAX objUsuario = new UsuarioAJAX();
                     objUsuario.Rut = dr["Rut"].ToString();
                     objUsuario.Name = dr["Nombre"].ToString();
                     objUsuario.LastName = dr["Apellido"].ToString();
                     objUsuario.Mail = dr["Email"].ToString();
-                    objUsuario.Empresa = Convert.ToInt32(dr["IdEmpresa"].ToString());
-                    objUsuario.Departamento = Convert.ToInt32(dr["IdDepartamento"].ToString());
-                    objUsuario.Estado = Convert.ToInt32(dr["Estado"].ToString());
+                    objUsuario.Empresa = dr["NombreEmpresa"].ToString();
+                    objUsuario.Departamento = dr["NombreDepartamento"].ToString();
+                    //objUsuario.Estado = Convert.ToInt32(dr["Estado"].ToString());
 
                     // añadir a la lista de objetos
                     Lista.Add(objUsuario);
