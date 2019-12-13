@@ -84,7 +84,7 @@ namespace CapaPresentacion
 
         private void llenarDDLMarca()
         {
-            ddlSO.DataSource = MarcaLN.getInstance().ListarDepartamento();
+           // ddlSO.DataSource = MarcaLN.getInstance().ListarDepartamento();
             ddlSO.DataTextField = "Marca";
             ddlSO.DataValueField = "IdMarca";
             ddlSO.DataBind();
@@ -96,7 +96,7 @@ namespace CapaPresentacion
 
         private void llenarDDLSO()
         {
-            ddlSO.DataSource = SistemaOperativoLN.getInstance().ListarDepartamento();
+           //ddlSO.DataSource = SistemaOperativoLN.getInstance().ListarDepartamento();
             ddlSO.DataTextField = "Marca";
             ddlSO.DataValueField = "IdMarca";
             ddlSO.DataBind();
