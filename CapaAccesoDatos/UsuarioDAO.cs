@@ -202,6 +202,40 @@ namespace CapaAccesoDatos
             }
             return objUsuario;
 
+        }        
+        public bool ActualizarDatosUsuario(Usuario objUsuario)
+        {
+            bool ok = false;
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+
+            try
+            {
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("spActualizarDatosUsuarios", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmRut", objUsuario.Rut);                
+                //cmd.Parameters.AddWithValue("@prmPassword", objUsuario.Pass);
+                //cmd.Parameters.AddWithValue("@prmName", objUsuario.Name);
+                //cmd.Parameters.AddWithValue("@prmLastName", objUsuario.LastName);
+                cmd.Parameters.AddWithValue("@prmCorreo", objUsuario.Mail);
+                //cmd.Parameters.AddWithValue("@prmDepartamento", objUsuario.Departamento);
+                //cmd.Parameters.AddWithValue("@prmEmpresa", objUsuario.Empresa);                
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+
+                ok = true;
+            }
+            catch (Exception ex)
+            {
+                objUsuario = null;
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return ok;
         }
         public bool Actualizar(Usuario objUsuario)
         {

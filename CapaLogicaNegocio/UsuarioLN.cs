@@ -83,6 +83,19 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
+        public bool ActualizarDatosUsuario(Usuario objUsuario)
+        {
+            try
+            {
+                return UsuarioDAO.getInstance().ActualizarDatosUsuario(objUsuario);
+
+            }
+            catch (Exception ex)
+            {
+                objUsuario = null;
+                throw ex;
+            }
+        }
         public Usuario SeleccionarUsuario(String Rut)
         {
             Usuario user = new Usuario();
