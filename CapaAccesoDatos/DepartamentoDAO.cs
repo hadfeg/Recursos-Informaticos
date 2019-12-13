@@ -7,6 +7,7 @@ using CapaEntidades;
 using System.Data;
 using System.Data.SqlClient;
 
+
 namespace CapaAccesoDatos
 {
     public class DepartamentoDAO
@@ -33,21 +34,7 @@ namespace CapaAccesoDatos
                 con = Conexion.getInstance().ConexionBD();
                 cmd = new SqlCommand("spRegistrarDepartamento", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                //cmd.Parameters.AddWithValue("@prmSerie", objLaptop.Serie);
-                //cmd.Parameters.AddWithValue("@prmMac", objLaptop.MAC);
-                //cmd.Parameters.AddWithValue("@prmMarca", objLaptop.Marca);
-                //cmd.Parameters.AddWithValue("@prmModelo", objLaptop.Modelo);
-                //cmd.Parameters.AddWithValue("@prmNombre", objLaptop.NombreLaptop);
-                //cmd.Parameters.AddWithValue("@prmFechaCompra", objLaptop.FechaCompra);
-                //cmd.Parameters.AddWithValue("@prmFechaEntrega", objLaptop.FechaEntrega);
-                //cmd.Parameters.AddWithValue("@prmFechaUltimaMantencion", objLaptop.FechaUltimaMantencion);
-                //cmd.Parameters.AddWithValue("@prmTeamViewerID", objLaptop.IDTeamviewer);
-                //cmd.Parameters.AddWithValue("@prmProcesador", objLaptop.Procesador);
-                //cmd.Parameters.AddWithValue("@prmTeamviewer", objLaptop.IDTeamviewer);
-                //cmd.Parameters.AddWithValue("@prmRam", objLaptop.Ram);
-                //cmd.Parameters.AddWithValue("@prmHDD", objLaptop.HDD);
-                //cmd.Parameters.AddWithValue("@prmComentario", objLaptop.Comentario);
-                //cmd.Parameters.AddWithValue("@prmEstado", objLaptop.Estado);
+                cmd.Parameters.AddWithValue("@prmNombreDepto", objDepartamento.NombreDepartamento);
                 con.Open();
 
                 int filas = cmd.ExecuteNonQuery();

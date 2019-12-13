@@ -85,5 +85,12 @@ namespace CapaLogicaNegocio
             }
         }
 
+        public Usuario SeleccionarUsuario(String Rut)
+        {
+            Usuario user = new Usuario();
+            user = UsuarioDAO.getInstance().SeleccionarUsuario(Rut);
+            return user;
+        }
+
     }
 }

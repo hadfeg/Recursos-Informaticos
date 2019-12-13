@@ -23,7 +23,7 @@ namespace CapaPresentacion
             }
             else
             {
-                Response.Write("<script>window.alert('Acceso denegado, usted no se ha autenticado !');</script>");
+                Response.Write("<script>alert('Acceso denegado, usted no se ha autenticado !');</script>");
                 Response.Redirect("Login.aspx");
             }
         }
