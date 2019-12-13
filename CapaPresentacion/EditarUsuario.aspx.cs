@@ -86,10 +86,8 @@ namespace CapaPresentacion
             }
 
         }
-
         private Usuario GetEntity()
-        {
-            
+        {            
             Usuario objUsuario = new Usuario();
             objUsuario.User = txtUsuario.Text;
             objUsuario.Name = txtNombre.Text;
@@ -98,8 +96,6 @@ namespace CapaPresentacion
             //objUsuario.Rol = Convert.ToInt32(ddlPerfil.SelectedValue);
             objUsuario.Estado = 1; // Se asume que al ingresar usuario esta Activo.
             objUsuario.Pass = txtContrasena.Text;
-
-
             return objUsuario;
         }
 
@@ -110,7 +106,7 @@ namespace CapaPresentacion
 
         /*Método que llena la lista desplegable de las empresas, con el fin de que se desplieguen todas las empresas
          existentes en la BD en el formulario.*/
-        private void InicarLLenadoEmpresa()
+        public void InicarLLenadoEmpresa()
         {
             ddlEmpresa.DataSource = EmpresaLN.getInstance().ListarEmpresa();
             ddlEmpresa.DataTextField = "NombreEmpresa";

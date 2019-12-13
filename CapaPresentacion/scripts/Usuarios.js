@@ -32,7 +32,6 @@ function addRowDT(data) {
         ]);            
     }
 }
-
 function sendDataAjax() {
     $.ajax({
         type: "POST",
@@ -48,7 +47,26 @@ function sendDataAjax() {
         }
     });
 }
-
+function deleteDataAjax(data) {
+    var obj = JSON.stringify({ id: JSON.stringify(data) });
+    $.ajax({
+        type: "POST",
+        url: "ListadoUsuario.aspx/EliminarUsuarioLogico",
+        data: obj,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+        },
+        success: function (response) {
+            if (response.d) {
+                alert("Registro eliminado de manera correcta.");
+            } else {
+                alert("No se pudo eliminar el registro.");
+            }
+        }
+    });
+}
 //traducir el dataTable a Español
 $(document).ready(function () {
     $("#tbl_usuarios").dataTable({
@@ -84,9 +102,7 @@ $(document).ready(function () {
 function fillModalData() {
     $("#txtRutModal").val(data[0]);
     $("#txtNombreModal").val(data[1]);
-    $("#txtApellidosModal").val(data[2]);
-    $("#txtEmpresaModal").val(data[5]);
-    $("#txtDepartamentoModal").val(data[4]);
+    $("#txtApellidosModal").val(data[2]);    
     $("#txtCorreoModal").val(data[3])
     //$("#txtPassModal").val(data[5]);
 }
@@ -110,7 +126,7 @@ $(document).on('click', '.btn-delete', function (e) {
     // paso 1: enviar el id al servidor por medio de ajax
     deleteDataAjax(dataRow[0]);
     // paso 2: renderizar el datatable
-    sendDataAjax();
+    deleteDataAjax(data)
 });
 
 

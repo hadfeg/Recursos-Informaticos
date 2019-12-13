@@ -24,8 +24,8 @@ namespace CapaLogicaNegocio
             return lnUsuario;
         }
         #endregion
-        public Usuario AccesoSistema(String user, String pass){
-
+        public Usuario AccesoSistema(String user, String pass)
+        {
             try
             {
                 return UsuarioDAO.getInstance().AccesoSistema(user, pass);
@@ -46,7 +46,6 @@ namespace CapaLogicaNegocio
             {
                 throw ex;
             }
-
         }
 
         public DataSet ListarPerfil()
@@ -84,12 +83,22 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
-
         public Usuario SeleccionarUsuario(String Rut)
         {
             Usuario user = new Usuario();
             user = UsuarioDAO.getInstance().SeleccionarUsuario(Rut);
             return user;
+        }
+        public bool Eliminar(String Rut)
+        {
+            try
+            {
+                return UsuarioDAO.getInstance().Eliminar(Rut);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }

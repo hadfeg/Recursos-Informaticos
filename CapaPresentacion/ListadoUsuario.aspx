@@ -84,11 +84,11 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h5><strong>Empresa</strong></h5>
-                                <asp:TextBox ID="txtEmpresaModal" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                                <asp:DropDownList ID="ddlEmpresaModal" runat="server" CssClass="form-control"></asp:DropDownList> 
                             </div>
                             <div class="col-md-6">
                                 <h5><strong>Departamento</strong></h5>
-                                <asp:TextBox ID="txtDepartamentoModal" runat="server" Text="" CssClass="form-control" ></asp:TextBox>
+                                <asp:DropDownList ID="ddlDeptoModal" runat="server" CssClass="form-control"></asp:DropDownList>                                
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <h5><strong>Contraseña</strong></h5>
-                                <asp:TextBox ID="txtContrasenaModal" runat="server" Text="" CssClass="form-control"></asp:TextBox>
+                                <asp:TextBox ID="txtContrasenaModal" runat="server" Text="" CssClass="form-control" type="password" placeholder="Password"></asp:TextBox>
                             </div>
                             <div class="col-md-6">
                                 <h5><strong>Perfil</strong></h5>
@@ -106,7 +106,6 @@
                                     <asp:ListItem Enabled="True" Value="3" Text="Administradores de Áreas"></asp:ListItem>
                                     <asp:ListItem Enabled="True" Value="4" Text="Administrador"></asp:ListItem>
                                 </asp:DropDownList>
-
                             </div>
                         </div>
                     </div>
