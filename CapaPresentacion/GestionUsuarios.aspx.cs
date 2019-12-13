@@ -109,7 +109,7 @@ namespace CapaPresentacion
             objUsuario.Rol = Convert.ToInt32(rblPerfil.SelectedValue);
             objUsuario.Mail = txtEmail.Text;            
             objUsuario.Estado = 0;
-            objUsuario.Departamento = Convert.ToInt32(ddlDepartamento.SelectedValue);
+            objUsuario.Departamento =   Convert.ToInt32(ddlDepartamento.SelectedValue);
             objUsuario.Empresa = Convert.ToInt32(ddlEmpresa.SelectedValue);
 
             /**

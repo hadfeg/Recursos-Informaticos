@@ -8,7 +8,7 @@ namespace CapaEntidades
 {
     public class Empresa
     {
-        public int IdEmpresa { get; set; }
+        public int ID_Empresa { get; set; }
         public String NombreEmpresa { get; set; }
         public Empresa() { }
 

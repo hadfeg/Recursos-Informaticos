@@ -68,6 +68,7 @@ namespace CapaAccesoDatos
                 con = Conexion.getInstance().ConexionBD();
                 cmd = new SqlCommand("spRegistrarUsuario", con);
                 cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.AddWithValue("@prmUser", objUsuario.User);
                 cmd.Parameters.AddWithValue("@prmPass", objUsuario.Pass);
                 cmd.Parameters.AddWithValue("@prmName", objUsuario.Name);
@@ -160,11 +161,55 @@ namespace CapaAccesoDatos
             }
             return Lista;
         }
+
+        public Usuario SeleccionarUsuario(String rut)
+        {
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+            Usuario objUsuario = null;
+            SqlDataReader dr = null;
+            try
+            {
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("spEncontrarUsuario", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmRut",rut);     
+                conexion.Open();
+                dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    objUsuario = new Usuario();
+                    objUsuario.User = dr["Usuario"].ToString();
+                    objUsuario.Pass = dr["Contrasena"].ToString();
+                    objUsuario.UsrImage = dr["UsrImg"].ToString();
+                    objUsuario.Rut = dr["Rut"].ToString();
+                    objUsuario.Empresa = Convert.ToInt32(dr["IdEmpresa"].ToString());
+                    objUsuario.Departamento = Convert.ToInt32(dr["IdDepartamento"].ToString());
+                    objUsuario.Estado = Convert.ToInt32(dr["Estado"].ToString());
+                    objUsuario.Rol = Convert.ToInt32(dr["Rol"].ToString());
+                    objUsuario.LastName = dr["Apellido"].ToString();
+                    objUsuario.Mail = dr["Email"].ToString();
+                    objUsuario.Name = dr["Nombre"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                objUsuario = null;
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return objUsuario;
+
+        }
+
         public bool Actualizar(Usuario objUsuario)
         {
             bool ok = false;
             SqlConnection conexion = null;
-            SqlCommand cmd = null;
+            SqlCommand cmd = null;  
 
             try
             {

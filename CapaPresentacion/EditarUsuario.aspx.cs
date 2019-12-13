@@ -16,20 +16,21 @@ namespace CapaPresentacion
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session != null) {
-                this.UsrImg_Update.ImageUrl = Convert.ToString(Session["Image"]);
+            if (Session != null)
+            {
+                LlenarDatosFormulario();
                 InicarLLenadoDepartamento();
                 InicarLLenadoEmpresa();
-            }                                                   
+            }
         }
-     
+
         protected void btnActualizar_Click(object sender, EventArgs e)
         {
             String nombre = txtNombre.Text;
             String pass = Convert.ToString(Session["Contrasena"]);
             String rut = Convert.ToString(Session["id"]);
-            int empresa = Int32.Parse(ddlEmpresa.SelectedValue.ToString());
-            int depto = Int32.Parse(ddlDepto.SelectedValue.ToString());
+            String empresa = ddlEmpresa.SelectedValue.ToString();
+            String depto = ddlDepto.SelectedValue.ToString();
             String correo = txtEmail.Text;
             String apellido = txtApellido.Text;
             String nombreUsuario = txtUsuario.Text;
@@ -71,7 +72,7 @@ namespace CapaPresentacion
 
                 Session["Image"] = "~/UserImages/" + img;
                 Session["Usuario"] = objUsuario.User;
-            }                        
+            }
             bool response = UsuarioLN.getInstance().Actualizar(objUsuario);
 
             if (response == true)
@@ -88,7 +89,7 @@ namespace CapaPresentacion
 
         private Usuario GetEntity()
         {
-            //int NivelAcceso = Convert.ToInt32(rbNivelAcceso.SelectedValue);
+            
             Usuario objUsuario = new Usuario();
             objUsuario.User = txtUsuario.Text;
             objUsuario.Name = txtNombre.Text;
@@ -98,16 +99,17 @@ namespace CapaPresentacion
             objUsuario.Estado = 1; // Se asume que al ingresar usuario esta Activo.
             objUsuario.Pass = txtContrasena.Text;
 
-         
+
             return objUsuario;
         }
 
         protected void btn_Cancelar_Click(object sender, EventArgs e)
-        {   
-
+        {
             Response.Redirect("PanelGeneral.aspx");
         }
 
+        /*Método que llena la lista desplegable de las empresas, con el fin de que se desplieguen todas las empresas
+         existentes en la BD en el formulario.*/
         private void InicarLLenadoEmpresa()
         {
             ddlEmpresa.DataSource = EmpresaLN.getInstance().ListarEmpresa();
@@ -118,6 +120,9 @@ namespace CapaPresentacion
             int cant = ddlEmpresa.Items.Count;
             ddlEmpresa.Items.Insert(cant, new ListItem("[NUEVA EMPRESA]"));
         }
+
+        /*Método que llena la lista desplegable de los departamentos, con el fin de que se desplieguen todos los departamentos
+         existentes en la BD en el formulario.*/
         private void InicarLLenadoDepartamento()
         {
             ddlDepto.DataSource = DepartamentoLN.getInstance().ListarDepartamento();
@@ -127,6 +132,49 @@ namespace CapaPresentacion
             ddlDepto.Items.Insert(0, new ListItem("[Seleccione Departamento]"));
             int cant = ddlDepto.Items.Count;
             ddlDepto.Items.Insert(cant, new ListItem("[NUEVO DEPARTAMENTO]"));
+        }
+
+        /** Función que retorna un objeto de tipo usuario, utilizando el valor de la variable de sesion: Session["rut"].
+            Retorna TODOS los campos del usuario logeado.*/
+        private Usuario EncontrarUsuario()
+        {
+            String rut = Session["id"].ToString();
+
+            Usuario objUsuario = UsuarioLN.getInstance().SeleccionarUsuario(rut);
+
+            if (objUsuario != null)
+            {
+                return objUsuario;
+            }
+            else
+            {
+                return null;
+            }
+
+        }
+        
+        /* Método que llena el formulario con los datos del usuario que esta actualmente logeado.
+         */
+        private void LlenarDatosFormulario()
+        {
+
+            Usuario usuario_actual = EncontrarUsuario();
+
+            /*Llenado del formulario con los datos actuales del usuario logeado, con el fin de facilitar la tarea de la actualizacion de datos*/
+            this.UsrImg_Update.ImageUrl = Convert.ToString(Session["Image"]);
+            txtNombre.Text = usuario_actual.Name.ToString();
+            txtApellido.Text = usuario_actual.LastName.ToString();
+            txtEmail.Text = usuario_actual.Mail.ToString();
+            txtUsuario.Text = usuario_actual.User.ToString();
+
+            /* Llenado de los valores actuales del usuario logeado (Dropdown List Empresa y Dropdown List Departamento)*/
+            ddlDepto.SelectedValue = usuario_actual.Departamento.ToString();
+            ddlEmpresa.SelectedValue = usuario_actual.Empresa.ToString();
+
+
+
+                 
+
         }
 
     }

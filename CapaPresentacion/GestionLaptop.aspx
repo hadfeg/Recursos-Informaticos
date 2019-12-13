@@ -114,10 +114,7 @@
                         </div>
                         <div class="form-group">
                             <asp:TextBox ID="txtComentarios" runat="server" Text="" CssClass="form-control" type="text" placeholder="Ej: 1475154154"></asp:TextBox>
-                        </div>  
-                         
-
-
+                        </div>                           
                     </div>
                 </div>
             </div>               
@@ -136,13 +133,7 @@
                 </tr>
             </table>
         </div>
-    </section>
-
-    
-
-
-    
-
+    </section>        
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
 </asp:Content>
