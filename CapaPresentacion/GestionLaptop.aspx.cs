@@ -33,9 +33,9 @@ namespace CapaPresentacion
             ddlModelo.DataTextField = "Modelo";
             ddlModelo.DataValueField = "IdModelo";
             ddlModelo.DataBind();
-            ddlModelo.Items.Insert(0, new ListItem("[Seleccione marca]"));
+            ddlModelo.Items.Insert(0, new ListItem("[Seleccione modelo]"));
             int cant = ddlModelo.Items.Count;
-            ddlModelo.Items.Insert(cant, new ListItem("[NUEVA MARCA]"));
+            ddlModelo.Items.Insert(cant, new ListItem("[NUEVO MODELO]"));
         }
 
         private void llenarDDLModelos()
@@ -44,9 +44,9 @@ namespace CapaPresentacion
             ddlModelo.DataTextField = "Modelo";
             ddlModelo.DataValueField = "IdModelo";
             ddlModelo.DataBind();
-            ddlModelo.Items.Insert(0, new ListItem("[Seleccione marca]"));
+            ddlModelo.Items.Insert(0, new ListItem("[Seleccione modelo]"));
             int cant = ddlModelo.Items.Count;
-            ddlModelo.Items.Insert(cant, new ListItem("[NUEVA MARCA]"));
+            ddlModelo.Items.Insert(cant, new ListItem("[NUEVO MODELO]"));
         }
 
         private void llenarDDLMarca()
