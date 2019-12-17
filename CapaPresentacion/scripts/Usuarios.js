@@ -115,7 +115,7 @@ $(document).on('click', '.btn-edit', function (e) {
     var row = $(this).parent().parent()[0];
     data = tabla.fnGetData(row);
     fillModalData();
-    console.log(data);
+    //console.log(data);
 });
 
 // evento click para boton eliminar
@@ -135,13 +135,14 @@ $(document).on('click', '.btn-delete', function (e) {
 $("#btnactualizar").click(function (e) {
     e.preventDefault();
     updateDataAjax();
+    $('#imodalActualizar').modal('hide');
 })
 
 function updateDataAjax() {
 
     //var obj = (JSON.stringify({ rut: JSON.stringify(data[0]).replace(/\\"/g, '"'), correo: $("#txtCorreoModal").val() })); 
-    var obj = (JSON.stringify({rut: $("#txtRutModal").val(), correo: $("#txtCorreoModal").val() }));
-
+    var obj = (JSON.stringify({ rut: $("#txtRutModal").val(), correo: $("#txtCorreoModal").val(), nombres: $("#txtNombreModal").val(), apellidos: $("#txtApellidosModal").val(), pass: $("#txtContrasenaModal").val(), idEmpresa: $('#ddlEmpresaModal option:selected').val(), idDepartamento: $('#ddlDeptoModal option:selected').val(), rol: $('#ddlPerfilModal option:selected').val()    }));
+    console.log(obj);
     $.ajax({
         type: "POST",
         url: "ListadoUsuario.aspx/ActualizarDatosUsuario",

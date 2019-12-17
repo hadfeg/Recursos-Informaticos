@@ -42,13 +42,20 @@ namespace CapaPresentacion
             return ok;
         }
         [WebMethod]
-        public static bool ActualizarDatosUsuario(String rut, String correo)
+        public static bool ActualizarDatosUsuario(String rut, String correo, String nombres, String apellidos, String pass, String idEmpresa, String idDepartamento, String rol)
         {
             Usuario objUsuario = new Usuario()
             {
                 //rut = Convert.ToInt32(rut),
                 Rut = rut,
-                Mail = correo
+                Mail = correo,
+                Name = nombres,
+                LastName = apellidos,
+                Pass = pass,
+                Empresa = Convert.ToInt32(idEmpresa),
+                Departamento = Convert.ToInt32(idDepartamento),
+                Rol = Convert.ToInt32(rol)
+
             };
 
             bool ok = UsuarioLN.getInstance().ActualizarDatosUsuario(objUsuario);

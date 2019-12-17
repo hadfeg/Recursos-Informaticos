@@ -215,12 +215,13 @@ namespace CapaAccesoDatos
                 cmd = new SqlCommand("spActualizarDatosUsuarios", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@prmRut", objUsuario.Rut);                
-                //cmd.Parameters.AddWithValue("@prmPassword", objUsuario.Pass);
-                //cmd.Parameters.AddWithValue("@prmName", objUsuario.Name);
-                //cmd.Parameters.AddWithValue("@prmLastName", objUsuario.LastName);
+                cmd.Parameters.AddWithValue("@prmPassword", objUsuario.Pass);
+                cmd.Parameters.AddWithValue("@prmName", objUsuario.Name);
+                cmd.Parameters.AddWithValue("@prmLastName", objUsuario.LastName);
                 cmd.Parameters.AddWithValue("@prmCorreo", objUsuario.Mail);
-                //cmd.Parameters.AddWithValue("@prmDepartamento", objUsuario.Departamento);
-                //cmd.Parameters.AddWithValue("@prmEmpresa", objUsuario.Empresa);                
+                cmd.Parameters.AddWithValue("@prmDepartamento", objUsuario.Departamento);
+                cmd.Parameters.AddWithValue("@prmEmpresa", objUsuario.Empresa);
+                cmd.Parameters.AddWithValue("@prmRol", objUsuario.Rol);
                 conexion.Open();
                 cmd.ExecuteNonQuery();
 
