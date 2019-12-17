@@ -110,7 +110,7 @@
             </table>
         </div>
         <br />
-
+                                
         <script language="javascript">
 
             function validarRut(source,arguments) {
@@ -213,7 +213,7 @@
                                             */
                                     }
                               }
-              }
+            }
     
     </script>
 </section>

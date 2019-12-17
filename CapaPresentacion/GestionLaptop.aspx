@@ -21,7 +21,7 @@
                             <label>MARCA</label>
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID ="ddlMarca" runat="server" Width="580px" Height="30px"></asp:DropDownList>
+                            <asp:DropDownList ID ="ddlMarca" runat="server" Width="580px" Height="30px" OnSelectedIndexChanged="ddlMarca_SelectedIndexChanged" AutoPostBack="True" ValidateRequestMode="Enabled" EnableViewState="True"></asp:DropDownList>
                             <!--<asp:TextBox ID="txtMarca" runat="server" Text="" CssClass="form-control" placeholder="Ej: HP"></asp:TextBox>-->
                         </div>
                         <div class="form-group">
@@ -78,7 +78,8 @@
                             <label>MODELO</label>
                         </div>
                         <div class="form-group">
-                            <asp:TextBox ID="txtModelo" runat="server" Text="" CssClass="form-control" type="text" placeholder="Inspiron 5567"></asp:TextBox>
+                            <asp:DropDownList ID ="ddlModelo" runat="server" Width="580px" Height="30px"></asp:DropDownList>
+                            <!--<asp:TextBox ID="txtModelo" runat="server" Text="" CssClass="form-control" type="text" placeholder="Inspiron 5567"></asp:TextBox>-->
                         </div> 
                         <div class="form-group">
                             <label>RAM</label>
@@ -135,7 +136,34 @@
                 </tr>
             </table>
         </div>
+
+        <div class="modal fade" id="modalAgregarMarca" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel" style="text-align: center">AGREGAR MARCA</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h5><strong>Nombre</strong></h5>
+                                        <asp:TextBox ID="txtNombreMarca" runat="server" Text="" CssClass="form-control" Enabled="false"></asp:TextBox>                                
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="btn_agregar">Agregar</button>
+                            <button type="button" class="btn btn-primary" id="btn_volver">Volver</button>
+                        </div>
+                     </div>
+                 </div>
+         </div>
+
     </section>        
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
+    <script src="scripts/Laptop.js" type="text/javascript"></script>
 </asp:Content>

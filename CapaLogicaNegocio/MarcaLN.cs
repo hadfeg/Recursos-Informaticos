@@ -35,7 +35,7 @@ namespace CapaLogicaNegocio
             }
         }
 
-        public List<Marca> ListarMarcas()
+        public DataSet ListarMarcas()
         {
             try
             {

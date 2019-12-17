@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,7 @@ namespace CapaLogicaNegocio
         }
         #endregion
         
-        public List<SistemaOperativo> ListarSistemasOperativos()
+        public DataSet ListarSistemasOperativos()
         {
             try
             {

@@ -14,11 +14,75 @@ namespace CapaPresentacion
     public partial class GestionarLaptop : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
+        {      
+            
+            if (!IsPostBack)
+            {
+                llenarDDLMarca();
+                llenarDDLSO();
+                llenarDDLModelos();
+            }
+        }
+
+        private void llenarDDLModelosMarca()
+        {
+            int id_marca = Convert.ToInt32(ddlMarca.SelectedValue);
+            String nombreMarca = ddlMarca.Text;        
+      
+            ddlModelo.DataSource = ModeloLN.getInstance().ListarModelos(id_marca, nombreMarca);
+            ddlModelo.DataTextField = "Modelo";
+            ddlModelo.DataValueField = "IdModelo";
+            ddlModelo.DataBind();
+            ddlModelo.Items.Insert(0, new ListItem("[Seleccione marca]"));
+            int cant = ddlModelo.Items.Count;
+            ddlModelo.Items.Insert(cant, new ListItem("[NUEVA MARCA]"));
+        }
+
+        private void llenarDDLModelos()
+        {            
+            ddlModelo.DataSource = ModeloLN.getInstance().ListarModelos();
+            ddlModelo.DataTextField = "Modelo";
+            ddlModelo.DataValueField = "IdModelo";
+            ddlModelo.DataBind();
+            ddlModelo.Items.Insert(0, new ListItem("[Seleccione marca]"));
+            int cant = ddlModelo.Items.Count;
+            ddlModelo.Items.Insert(cant, new ListItem("[NUEVA MARCA]"));
+        }
+
+        private void llenarDDLMarca()
+        {            
+            ddlMarca.DataSource = MarcaLN.getInstance().ListarMarcas();
+            ddlMarca.DataTextField = "Marca";
+            ddlMarca.DataValueField = "IdMarca";
+            ddlMarca.DataBind();
+            ddlMarca.Items.Insert(0, new ListItem("[Seleccione marca]"));
+            int cant = ddlMarca.Items.Count;
+            ddlMarca.Items.Insert(cant, new ListItem("[NUEVA MARCA]"));
+            
+        }
+        /*
+        private void llenarDDLModelos()
         {
 
-            llenarDDLMarca();
-            llenarDDLSO();
+            ddlModelo.DataSource = ModeloLN.getInstance().ListarModelos(Convert.ToInt32(ddlMarca.SelectedValue),ddlModelo.Text);
+            ddlModelo.DataTextField = "Modelo"; // Nombre de la columna en la BD.
+            ddlModelo.DataValueField = "IdModelo"; // Nombre de la columna en la BD.
+            ddlModelo.DataBind();
+            ddlModelo.Items.Insert(0, new ListItem("[Seleccione Sistema Operativo]"));
+            int cant = ddlModelo.Items.Count;
+            ddlModelo.Items.Insert(cant, new ListItem("[NUEVO SISTEMA OPERATIVO]"));
 
+        }*/
+
+        private void llenarDDLSO()
+        {
+            ddlSO.DataSource = SistemaOperativoLN.getInstance().ListarSistemasOperativos();
+            ddlSO.DataTextField = "Nombre"; // Nombre de la columna en la BD.
+            ddlSO.DataValueField = "IdSO"; // Nombre de la columna en la BD.
+            ddlSO.DataBind();
+            ddlSO.Items.Insert(0, new ListItem("[Seleccione Sistema Operativo]"));
+            int cant = ddlSO.Items.Count;
+            ddlSO.Items.Insert(cant, new ListItem("[NUEVO SISTEMA OPERATIVO]"));
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e)
@@ -40,10 +104,9 @@ namespace CapaPresentacion
         private Laptop GetEntity() {
 
             //int NivelAcceso = Convert.ToInt32(rbNivelAcceso.SelectedValue);
-            Laptop objLaptop = new Laptop();
-           
+            Laptop objLaptop = new Laptop();            
             objLaptop.Serie = txtSerie.Text;            
-            objLaptop.Modelo = txtModelo.Text;
+            objLaptop.IdModelo = Convert.ToInt32(ddlModelo.SelectedValue);
             objLaptop.Ram = txtRam.Text;
             objLaptop.NombreLaptop = txtNombreEquipo.Text;
             objLaptop.Procesador = txtProcesador.Text;
@@ -56,10 +119,9 @@ namespace CapaPresentacion
             objLaptop.Opcional = txtOpcional.Text;
             objLaptop.Comentario = txtComentario.Text;
             String val = ddlMarca.SelectedValue.ToString();
-            objLaptop.IdSistOperativo = Convert.ToInt32(ddlSO.SelectedIndex);
-            objLaptop.IdMarca = Convert.ToInt32(ddlMarca.SelectedIndex);
+            objLaptop.IdSistOperativo = Convert.ToInt32(ddlSO.SelectedValue);
+            objLaptop.IdMarca = Convert.ToInt32(ddlMarca.SelectedValue);
             objLaptop.HDD = Convert.ToInt32(txtHDD.Text);
-
             /**
             if (NivelAcceso == 1)
             {
@@ -86,30 +148,19 @@ namespace CapaPresentacion
 
         }
 
-        private void llenarDDLMarca()
+        protected void ddlMarca_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ddlMarca.DataSource = MarcaLN.getInstance().ListarMarcas();
-            ddlMarca.DataTextField = "marca";
-            ddlMarca.DataValueField = "IdMarca";
-            ddlMarca.DataBind();
-            ddlMarca.Items.Insert(0, new ListItem("[Seleccione marca]"));
-            int cant = ddlMarca.Items.Count;
-            ddlMarca.Items.Insert(cant, new ListItem("[NUEVA MARCA]"));
-
+            //String valor = ddlMarca.SelectedItem.Text;
+            //if ( valor == "[NUEVA MARCA]")
+            //{
+            //   Response.Write("<script>alert('REGISTRO INCORRECTO11111.')</script>");
+            //}
         }
 
-        private void llenarDDLSO()
+        protected void ddlMarca_TextChanged(object sender, EventArgs e)
         {
-            ddlSO.DataSource = SistemaOperativoLN.getInstance().ListarSistemasOperativos();
-            ddlSO.DataTextField = "SO";
-            ddlSO.DataValueField = "IdSistemaOperativo";
-            ddlSO.DataBind();
-            ddlSO.Items.Insert(0, new ListItem("[Seleccione Sistema Operativo]"));
-            int cant = ddlSO.Items.Count;
-            ddlSO.Items.Insert(cant, new ListItem("[NUEVO SISTEMA OPERATIVO]"));
-
+            Response.Write("<script>alert('REGISTRO INCORRECTO11111.')</script>");
         }
-
     }
 
 }

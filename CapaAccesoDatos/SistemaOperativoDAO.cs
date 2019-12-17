@@ -53,7 +53,7 @@ namespace CapaAccesoDatos
             }
             return response;
         }
-        
+        /*
         public List<SistemaOperativo> ListarSistemasOperativos()
         {
             List<SistemaOperativo> Lista = new List<SistemaOperativo>();
@@ -87,6 +87,33 @@ namespace CapaAccesoDatos
                 con.Close();
             }
             return Lista;
+        }*/
+
+        public DataSet ListarSistemasOperativos()
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            DataSet ds = null;
+            SqlDataAdapter da = null;
+            string sql = "SELECT * FROM SO";
+            try
+            {
+                con = Conexion.getInstance().ConexionBD();
+                con.Open();
+                cmd = new SqlCommand(sql, con);
+                da = new SqlDataAdapter(cmd);
+                ds = new DataSet();
+                da.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return ds;
         }
 
     }

@@ -9,7 +9,7 @@ namespace CapaEntidades
     public class SistemaOperativo
     {
         public int IdSistemaOperativo { get; set; }
-        public String SO { get; set; }
+        public String NombreSO { get; set; }
         public float Version { get; set; }
         public String ServiPack { get; set; }
         public String Suscripcion { get; set; }
