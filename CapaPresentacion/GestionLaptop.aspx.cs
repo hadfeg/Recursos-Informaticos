@@ -4,18 +4,21 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Services;
 
 
 using CapaEntidades;
 using CapaLogicaNegocio;
+using CapaAccesoDatos;
+using System.Web.Script.Services;
 
 namespace CapaPresentacion
 {
     public partial class GestionarLaptop : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
-        {      
-            
+        {
+
             if (!IsPostBack)
             {
                 llenarDDLMarca();
@@ -27,8 +30,8 @@ namespace CapaPresentacion
         private void llenarDDLModelosMarca()
         {
             int id_marca = Convert.ToInt32(ddlMarca.SelectedValue);
-            String nombreMarca = ddlMarca.Text;        
-      
+            String nombreMarca = ddlMarca.Text;
+
             ddlModelo.DataSource = ModeloLN.getInstance().ListarModelos(id_marca, nombreMarca);
             ddlModelo.DataTextField = "Modelo";
             ddlModelo.DataValueField = "IdModelo";
@@ -39,7 +42,7 @@ namespace CapaPresentacion
         }
 
         private void llenarDDLModelos()
-        {            
+        {
             ddlModelo.DataSource = ModeloLN.getInstance().ListarModelos();
             ddlModelo.DataTextField = "Modelo";
             ddlModelo.DataValueField = "IdModelo";
@@ -50,7 +53,7 @@ namespace CapaPresentacion
         }
 
         private void llenarDDLMarca()
-        {            
+        {
             ddlMarca.DataSource = MarcaLN.getInstance().ListarMarcas();
             ddlMarca.DataTextField = "Marca";
             ddlMarca.DataValueField = "IdMarca";
@@ -58,7 +61,7 @@ namespace CapaPresentacion
             ddlMarca.Items.Insert(0, new ListItem("[Seleccione marca]"));
             int cant = ddlMarca.Items.Count;
             ddlMarca.Items.Insert(cant, new ListItem("[NUEVA MARCA]"));
-            
+
         }
         /*
         private void llenarDDLModelos()
@@ -104,8 +107,8 @@ namespace CapaPresentacion
         private Laptop GetEntity() {
 
             //int NivelAcceso = Convert.ToInt32(rbNivelAcceso.SelectedValue);
-            Laptop objLaptop = new Laptop();            
-            objLaptop.Serie = txtSerie.Text;            
+            Laptop objLaptop = new Laptop();
+            objLaptop.Serie = txtSerie.Text;
             objLaptop.IdModelo = Convert.ToInt32(ddlModelo.SelectedValue);
             objLaptop.Ram = txtRam.Text;
             objLaptop.NombreLaptop = txtNombreEquipo.Text;
@@ -160,6 +163,51 @@ namespace CapaPresentacion
         protected void ddlMarca_TextChanged(object sender, EventArgs e)
         {
             Response.Write("<script>alert('REGISTRO INCORRECTO11111.')</script>");
+        }
+
+        //ScriptMethod(ResponseFormat = ResponseFormat.Json,UseHttpGet = true)
+        [WebMethod]         
+        public static bool AgregarMarca(String marca)
+        {
+            bool ok = false;
+            
+            try
+            {
+                Marca objMarca = new Marca();
+                objMarca.marca = marca;
+                MarcaLN.getInstance().RegistrarMarca(objMarca);
+                ok = true;
+                return ok;
+            }
+            catch (Exception e) {
+
+
+                throw e;
+            }
+        }
+
+        [WebMethod]
+        public static bool AgregarSistemaOperativo(String nombre, float version, String sp, String suscripcion)
+        {
+            bool ok = false;
+
+            try
+            {
+                SistemaOperativo objSistemaOperativo = new SistemaOperativo();
+                objSistemaOperativo.NombreSO = nombre;
+                objSistemaOperativo.Version = version;
+                objSistemaOperativo.ServiPack = sp;
+                objSistemaOperativo.Suscripcion = suscripcion;
+                SistemaOperativoLN.getInstance().RegistrarSistemaOperativo(objSistemaOperativo);
+                ok = true;
+                return ok;
+            }
+            catch (Exception e)
+            {
+
+
+                throw e;
+            }
         }
     }
 

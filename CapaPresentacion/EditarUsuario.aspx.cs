@@ -68,7 +68,7 @@ namespace CapaPresentacion
                 objUsuario.UsrImage = "~/UserImages/" + img;               // Actualiza la imagen del usuario, añadiendola a un objeto de tipo Usuario.
                 img_anterior = img_anterior.Substring(13); ;              // Obtiene el nombre de la imagen anterior, sin el repositorio. 
                 String path = Directory.GetCurrentDirectory();           // Se obtiene el directorio actual de trabajo.
-                File.Delete(img_anterior);                              // Finalmente, elimina las imagen anterior del directorio.
+                File.Delete(img_anterior);                              // Finalmente, elimina la imagen anterior del directorio.
 
                 Session["Image"] = "~/UserImages/" + img;
                 Session["Usuario"] = objUsuario.User;

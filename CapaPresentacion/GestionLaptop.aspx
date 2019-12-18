@@ -35,8 +35,7 @@
                         </div>
                         <div class="form-group">
                             <asp:TextBox ID="txtHDD" runat="server" Text="" CssClass="form-control" placeholder="EJ: 100 GB (Ingrese solo el numero)"></asp:TextBox>
-                        </div>                                   
-                         
+                        </div>                                                            
                         <div class="form-group">
                             <label>SISTEMA OPERATIVO</label>                            
                         </div>
@@ -105,7 +104,6 @@
                         <div class="form-group">
                             <asp:TextBox ID="txtOpcional" runat="server" Text="" CssClass="form-control" type="text" placeholder="Ej: Comentarios Opcionales"></asp:TextBox>
                         </div>          
-
                         <div class="form-group">
                             <label>FECHA DE ULTIMA MANTENCION</label>
                         </div>
@@ -155,7 +153,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="btn_agregarMarca">Agregar</button>
+                            <button type="button" class="btn btn-primary" id="btn_agregarMarca" value ="Submit">Agregar</button>
                             <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_volverMarca">Volver</button>
                         </div>
                      </div>

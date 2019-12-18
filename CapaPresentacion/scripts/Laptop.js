@@ -11,7 +11,6 @@
   //	});
  //	e.preventDefault;		
 //});
-
 $("#ContentPlaceHolder1_ddlMarca").change(function (e) {
 
 	var value = $("#ContentPlaceHolder1_ddlMarca option:selected").text();
@@ -26,18 +25,83 @@ $("#ContentPlaceHolder1_ddlSO").change(function (e) {
 
 });
 
-$("#ContentPlaceHolder1_ddlModelo").change(function (e) {
+$("#ContentPlaceHolder1_ddlModelo").change(function(e){
 
 	var value = $("#ContentPlaceHolder1_ddlModelo option:selected").text();
 	(value == "[NUEVO MODELO]") ? $("#modalAgregarModelo").modal('show') : $("#modalAgregarModelo").modal('hide')
 
 });
 
+$("#btn_agregarMarca").click(function (){
 
-$(document).on('click', '.btn_agregarMarca', function (e) {
-	e.preventDefault();
-	var row = $(this).parent().parent()[0];
-	data = tabla.fnGetData(row);
-	fillModalData();
-	console.log(data);
+	añadirMarca();
+	//console.log(nombre);
 });
+
+$("#btn_agregarSO").click(function () {
+
+	añadirSistemaOperativo();
+	//console.log(nombre);
+});
+
+function añadirMarca() {
+
+	var res = validate();
+	if (res == false) { return false; }
+
+	var obj = JSON.stringify({ marca: $("#ContentPlaceHolder1_txtNombreMarca").val() });
+	
+	$.ajax({
+		type: "POST",
+		url: "GestionLaptop.aspx/AgregarMarca",
+		contentType: "application/json;charset=utf-8",
+		data: obj,
+		dataType:"json",
+		success: function (response) {
+			alert("Registro insertado de manera correcta.");
+			window.location.reload();
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+		}
+	}); 
+}
+
+function añadirSistemaOperativo() {
+
+	var res = validateOS();
+	if (res == false) { alert("Estimad@, por favor rellene los campos solicitados !!!");return false; }
+
+	var obj = JSON.stringify({ nombre: $("#ContentPlaceHolder1_txtNombreSistOpModal").val(), version: $("#ContentPlaceHolder1_txtVersionModal").val(), sp: $("#ContentPlaceHolder1_txtServicePackModal").val(), suscripcion: $("#ContentPlaceHolder1_txtSuscripcion").val()});
+
+	$.ajax({
+		type: "POST",
+		url: "GestionLaptop.aspx/AgregarSistemaOperativo",
+		contentType: "application/json;charset=utf-8",
+		data: obj,
+		dataType: "json",
+		success: function (response) {
+			alert("Registro insertado de manera correcta.");
+			window.location.reload();
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+		}
+	});
+}
+
+function validate() {
+	var isValid = true;
+	if ($("#ContentPlaceHolder1_txtNombreMarca").val().trim() == "") {
+		isValid = false;
+	}
+	return isValid;
+}  
+
+function validateOS() {
+	var isValid = true;
+	if ($("#ContentPlaceHolder1_txtNombreSistOpModal").val().trim() == "" || $("#ContentPlaceHolder1_txtVersionModal").val().trim() == "") {
+		isValid = false;
+	}
+	return isValid;
+}  
