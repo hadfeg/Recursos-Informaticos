@@ -7,7 +7,8 @@ using System.Web.UI.WebControls;
 using System.Web.Services;
 using CapaLogicaNegocio;
 using CapaEntidades;
-//using CapaPresentacion.Custom;
+using System.Web.Script.Serialization;
+//using CapaPresentacion.custom;
 
 namespace CapaPresentacion
 {
@@ -17,6 +18,7 @@ namespace CapaPresentacion
         {
             InicarLLenadoEmpresaModal();
             InicarLLenadoDepartamentoModal();
+            InicarLLenadoPerfilModal();
         }
         [WebMethod]
         public static List<UsuarioAJAX> ListarUsuario()
@@ -39,15 +41,33 @@ namespace CapaPresentacion
             bool ok = UsuarioLN.getInstance().Eliminar(rut);            
             return ok;
         }
+        [WebMethod]
+        public static bool ActualizarDatosUsuario(String rut, String correo, String nombres, String apellidos, String pass, String idEmpresa, String idDepartamento, String rol)
+        {
+            Usuario objUsuario = new Usuario()
+            {
+                //rut = Convert.ToInt32(rut),
+                Rut = rut,
+                Mail = correo,
+                Name = nombres,
+                LastName = apellidos,
+                Pass = pass,
+                Empresa = Convert.ToInt32(idEmpresa),
+                Departamento = Convert.ToInt32(idDepartamento),
+                Rol = Convert.ToInt32(rol)
+
+            };
+
+            bool ok = UsuarioLN.getInstance().ActualizarDatosUsuario(objUsuario);
+            return ok;
+        }
+
         public void InicarLLenadoEmpresaModal()
         {
             ddlEmpresaModal.DataSource = EmpresaLN.getInstance().ListarEmpresa();
             ddlEmpresaModal.DataTextField = "NombreEmpresa";
             ddlEmpresaModal.DataValueField = "IdEmpresa";
-            ddlEmpresaModal.DataBind();
-            ddlEmpresaModal.Items.Insert(0, new ListItem("[Seleccione Empresa]"));
-            int cant = ddlEmpresaModal.Items.Count;
-            ddlEmpresaModal.Items.Insert(cant, new ListItem("[NUEVA EMPRESA]"));
+            ddlEmpresaModal.DataBind();                        
             LlenarDatosDLLModal();
         }
         private void InicarLLenadoDepartamentoModal()
@@ -55,12 +75,18 @@ namespace CapaPresentacion
             ddlDeptoModal.DataSource = DepartamentoLN.getInstance().ListarDepartamento();
             ddlDeptoModal.DataTextField = "NombreDepartamento";
             ddlDeptoModal.DataValueField = "IdDepartamento";
-            ddlDeptoModal.DataBind();
-            ddlDeptoModal.Items.Insert(0, new ListItem("[Seleccione Departamento]"));
-            int cant = ddlDeptoModal.Items.Count;
-            ddlDeptoModal.Items.Insert(cant, new ListItem("[NUEVO DEPARTAMENTO]"));
+            ddlDeptoModal.DataBind();                       
             LlenarDatosDLLModal();
         }
+        private void InicarLLenadoPerfilModal()
+        {
+            ddlPerfilModal.DataSource = PerfilLN.getInstance().ListarPerfil();
+            ddlPerfilModal.DataTextField = "Descripcion";
+            ddlPerfilModal.DataValueField = "IdPerfil";
+            ddlPerfilModal.DataBind();            
+            LlenarDatosDLLModal();
+        }
+        [WebMethod]
         private void LlenarDatosDLLModal()
         {
             String rut = Session["id"].ToString();
@@ -68,6 +94,7 @@ namespace CapaPresentacion
             /* Llenado de los valores actuales del usuario logeado (Dropdown List Empresa y Dropdown List Departamento)*/
             ddlDeptoModal.SelectedValue = usuario_actual.Departamento.ToString();
             ddlEmpresaModal.SelectedValue = usuario_actual.Empresa.ToString();
+            ddlPerfilModal.SelectedValue = usuario_actual.Rol.ToString();
         }
     }
 }

@@ -32,6 +32,7 @@ function addRowDT(data) {
         ]);            
     }
 }
+
 function sendDataAjax() {
     $.ajax({
         type: "POST",
@@ -47,8 +48,9 @@ function sendDataAjax() {
         }
     });
 }
+
 function deleteDataAjax(data) {
-    var obj = JSON.stringify({ id: JSON.stringify(data) });
+    var obj = JSON.stringify({ Rut: JSON.stringify(data) });
     $.ajax({
         type: "POST",
         url: "ListadoUsuario.aspx/EliminarUsuarioLogico",
@@ -67,6 +69,7 @@ function deleteDataAjax(data) {
         }
     });
 }
+
 //traducir el dataTable a Español
 $(document).ready(function () {
     $("#tbl_usuarios").dataTable({
@@ -103,8 +106,7 @@ function fillModalData() {
     $("#txtRutModal").val(data[0]);
     $("#txtNombreModal").val(data[1]);
     $("#txtApellidosModal").val(data[2]);    
-    $("#txtCorreoModal").val(data[3])
-    //$("#txtPassModal").val(data[5]);
+    $("#txtCorreoModal").val(data[3]);    
 }
 
 // evento click para boton actualizar
@@ -113,7 +115,7 @@ $(document).on('click', '.btn-edit', function (e) {
     var row = $(this).parent().parent()[0];
     data = tabla.fnGetData(row);
     fillModalData();
-    console.log(data);
+    //console.log(data);
 });
 
 // evento click para boton eliminar
@@ -129,6 +131,36 @@ $(document).on('click', '.btn-delete', function (e) {
     deleteDataAjax(data)
 });
 
+// enviar la informacion al servidor
+$("#btnactualizar").click(function (e) {
+    e.preventDefault();
+    updateDataAjax();
+    $('#imodalActualizar').modal('hide');
+})
+
+function updateDataAjax() {
+
+    //var obj = (JSON.stringify({ rut: JSON.stringify(data[0]).replace(/\\"/g, '"'), correo: $("#txtCorreoModal").val() })); 
+    var obj = (JSON.stringify({ rut: $("#txtRutModal").val(), correo: $("#txtCorreoModal").val(), nombres: $("#txtNombreModal").val(), apellidos: $("#txtApellidosModal").val(), pass: $("#txtContrasenaModal").val(), idEmpresa: $('#ddlEmpresaModal option:selected').val(), idDepartamento: $('#ddlDeptoModal option:selected').val(), rol: $('#ddlPerfilModal option:selected').val()    }));
+    console.log(obj);
+    $.ajax({
+        type: "POST",
+        url: "ListadoUsuario.aspx/ActualizarDatosUsuario",
+        data: obj,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+        },
+        success: function (response) {
+            if (response.d) {
+                alert("Registro actualizado de manera correcta.");
+            } else {
+                alert("No se pudo actualizar el registro.");
+            }
+        }
+    });
+}
 
 // Llamando a la funcion de ajax al cargar el documento
 sendDataAjax();

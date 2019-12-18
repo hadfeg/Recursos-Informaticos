@@ -45,6 +45,7 @@
     <Compile Include="EmpresaLN.cs" />
     <Compile Include="LaptopLN.cs" />
     <Compile Include="MarcaLN.cs" />
+    <Compile Include="PerfilLN.cs" />
     <Compile Include="ModeloLN.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SistemaOperativoLN.cs" />
