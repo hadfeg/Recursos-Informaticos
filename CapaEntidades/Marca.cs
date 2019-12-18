@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidades
 {
-    class Marca
+    public class Marca
     {
         public int IdMarca { get; set; }
         public String marca { get; set; }

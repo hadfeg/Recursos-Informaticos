@@ -11,7 +11,7 @@ namespace CapaEntidades
         public String Serie { get; set; }
         public String NombreLaptop { get; set; }
         public int IdMarca { get; set; }
-        public String Modelo { get; set; }
+        public int IdModelo { get; set; }
         public String Procesador { get; set; }
         public String Ram { get; set; }
         public int HDD { get; set; }
