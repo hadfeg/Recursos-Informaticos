@@ -35,7 +35,10 @@ namespace CapaAccesoDatos
                 con = Conexion.getInstance().ConexionBD();
                 cmd = new SqlCommand("spRegistrarSistemaOperativo", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@prmMarca", objSO);
+                cmd.Parameters.AddWithValue("@prmNombre", objSO.NombreSO);
+                cmd.Parameters.AddWithValue("@prmVersion", objSO.Version);
+                cmd.Parameters.AddWithValue("@prmServicePack", objSO.ServiPack);
+                cmd.Parameters.AddWithValue("@prmSuscripcion", objSO.Suscripcion);
                 con.Open();
 
                 int filas = cmd.ExecuteNonQuery();

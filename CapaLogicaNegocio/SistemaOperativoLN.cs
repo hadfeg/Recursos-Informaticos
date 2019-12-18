@@ -24,7 +24,19 @@ namespace CapaLogicaNegocio
             return objSO;
         }
         #endregion
-        
+
+        public bool RegistrarSistemaOperativo(SistemaOperativo objSistemaOperativo)
+        {
+            try
+            {
+                return SistemaOperativoDAO.getInstance().RegistrarSO(objSistemaOperativo);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public DataSet ListarSistemasOperativos()
         {
             try
