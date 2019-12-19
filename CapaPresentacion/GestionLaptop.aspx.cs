@@ -77,8 +77,7 @@ namespace CapaPresentacion
 
         }*/
 
-        private void llenarDDLSO()
-        {
+        private void llenarDDLSO(){
             ddlSO.DataSource = SistemaOperativoLN.getInstance().ListarSistemasOperativos();
             ddlSO.DataTextField = "Nombre"; // Nombre de la columna en la BD.
             ddlSO.DataValueField = "IdSO"; // Nombre de la columna en la BD.
@@ -209,6 +208,29 @@ namespace CapaPresentacion
                 throw e;
             }
         }
+
+        [WebMethod]
+        public static bool AgregarModelo(String modelo, int marca)
+        {
+            bool ok = false;
+
+            try
+            {
+                Modelo objModelo = new Modelo();
+                objModelo.NombreModelo = modelo;
+                objModelo.MarcaId = marca;
+                ModeloLN.getInstance().RegistrarModelo(objModelo);
+                ok = true;
+                return ok;
+            }
+            catch (Exception e)
+            {
+
+
+                throw e;
+            }
+        }
+
     }
 
 }

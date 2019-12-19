@@ -25,7 +25,7 @@ namespace CapaLogicaNegocio
             return objModelo;
         }
         #endregion
-
+        ]
         public bool RegistrarModelo(Modelo objModelo)
         {
             try

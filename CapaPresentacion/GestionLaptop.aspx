@@ -216,8 +216,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="btn_agregar">Agregar</button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_volver">Volver</button>
+                            <button type="button" class="btn btn-primary" id="btn_agregarModelo">Agregar</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_volverModelo">Volver</button>
                         </div>
                      </div>
                  </div>

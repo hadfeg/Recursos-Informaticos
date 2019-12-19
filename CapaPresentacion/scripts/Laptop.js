@@ -44,6 +44,13 @@ $("#btn_agregarSO").click(function () {
 	//console.log(nombre);
 });
 
+$("#btn_agregarModelo").click(function () {
+
+	añadirModelo();
+	//console.log(nombre);
+});
+
+
 function añadirMarca() {
 
 	var res = validate();
@@ -90,9 +97,40 @@ function añadirSistemaOperativo() {
 	});
 }
 
+function añadirModelo() {
+
+	var res = validateModel();
+	if (res == false) { alert("Estimad@, por favor rellene los campos solicitados !!!"); return false; }
+
+	var obj = JSON.stringify({ nombre: $("#ContentPlaceHolder1_txtNombreModeloModal").val(), marca:$("#ContentPlaceHolder1_ddlModeloMarcaModal option:selected").text() });
+
+	$.ajax({
+		type: "POST",
+		url: "GestionLaptop.aspx/AgregarModelo",
+		contentType: "application/json;charset=utf-8",
+		data: obj,
+		dataType: "json",
+		success: function (response) {
+			alert("Registro insertado de manera correcta.");
+			window.location.reload();
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+		}
+	});
+}
+
 function validate() {
 	var isValid = true;
 	if ($("#ContentPlaceHolder1_txtNombreMarca").val().trim() == "") {
+		isValid = false;
+	}
+	return isValid;
+} 
+
+function validateModel() {
+	var isValid = true;
+	if ($("#ContentPlaceHolder1_txtNombreModeloModal").val().trim() == "" || $("#ContentPlaceHolder1_ddlModeloMarcaModal option:selected").text() == "" ) {
 		isValid = false;
 	}
 	return isValid;
