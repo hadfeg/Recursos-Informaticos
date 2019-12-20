@@ -66,7 +66,7 @@ function añadirMarca() {
 		dataType:"json",
 		success: function (response) {
 			alert("Registro insertado de manera correcta.");
-			window.location.reload();
+			//window.location.reload();
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
@@ -89,13 +89,30 @@ function añadirSistemaOperativo() {
 		dataType: "json",
 		success: function (response) {
 			alert("Registro insertado de manera correcta.");
-			location.reload();
+			
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
 		}
 	});
 }
+
+//function llenarSistemasOperativos(){
+
+//	$.ajax({
+//		type: "POST",
+//		url: "GestionLaptop.aspx/ListarSistemasOperativosWeb",
+//		contentType: "application/json;charset=utf-8",
+//		success: function (response) {
+//			alert("yes bruh.");
+
+//		},
+//		error: function (xhr, ajaxOptions, thrownError) {
+//			console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+//		}
+//	});
+
+//}
 
 function añadirModelo() {
 
@@ -112,7 +129,7 @@ function añadirModelo() {
 		dataType: "json",
 		success: function (response) {
 			alert("Registro insertado de manera correcta.");
-			window.location.reload();
+			//window.location.reload();
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
