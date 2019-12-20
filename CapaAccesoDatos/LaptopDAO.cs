@@ -25,7 +25,7 @@ namespace CapaAccesoDatos
         #endregion
 
         public bool RegistrarLaptop(Laptop objLaptop)
-        {
+        {   
             SqlConnection con = null;
             SqlCommand cmd = null;
             bool response = false;
@@ -37,7 +37,7 @@ namespace CapaAccesoDatos
                 cmd.Parameters.AddWithValue("@prmSerie", objLaptop.Serie);
                 cmd.Parameters.AddWithValue("@prmMac", objLaptop.MAC);
                 cmd.Parameters.AddWithValue("@prmMarca", objLaptop.IdMarca);
-                cmd.Parameters.AddWithValue("@prmModelo", objLaptop.IdModelo);
+                cmd.Parameters.AddWithValue("@prmModeloID", objLaptop.IdModelo);
                 cmd.Parameters.AddWithValue("@prmNombre", objLaptop.NombreLaptop);
                 cmd.Parameters.AddWithValue("@prmFechaCompra", objLaptop.FechaCompra);
                 cmd.Parameters.AddWithValue("@prmFechaEntrega", objLaptop.FechaEntrega);

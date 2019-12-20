@@ -50,7 +50,7 @@ namespace CapaPresentacion
             ddlModeloMarcaModal.DataTextField = "Marca";
             ddlModeloMarcaModal.DataValueField = "IdMarca";
             ddlModeloMarcaModal.DataBind();
-            ddlModeloMarcaModal.Items.Insert(0, new ListItem("[Seleccione marca]"));            
+            ddlModeloMarcaModal.Items.Insert(0, new ListItem("[Seleccione marca]"));
         }
 
         private void llenarDDLMarca()
@@ -63,8 +63,8 @@ namespace CapaPresentacion
             //int cant = ddlMarca.Items.Count;
             //ddlMarca.Items.Insert(cant, new ListItem("[NUEVA MARCA]"));            
         }
-       
-        private void llenarDDLSO(){
+
+        private void llenarDDLSO() {
             ddlSO.DataSource = SistemaOperativoLN.getInstance().ListarSistemasOperativos();
             ddlSO.DataTextField = "Nombre"; // Nombre de la columna en la BD.
             ddlSO.DataValueField = "IdSO"; // Nombre de la columna en la BD.
@@ -91,7 +91,7 @@ namespace CapaPresentacion
         }
 
         private Laptop GetEntity()
-        {    
+        {
             Laptop objLaptop = new Laptop();
             objLaptop.Serie = txtSerie.Text;
             objLaptop.IdModelo = Convert.ToInt32(ddlModelo.SelectedValue);
@@ -131,7 +131,7 @@ namespace CapaPresentacion
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void ddlMarca_SelectedIndexChanged(object sender, EventArgs e)
@@ -139,10 +139,10 @@ namespace CapaPresentacion
             String valor = ddlMarca.SelectedItem.Text;
             bool condicion_1 = (valor == "[NUEVA MARCA]");
             bool condicion_2 = (valor == "[Seleccione marca]");
-            
+
             if (condicion_1)
             {
-                ddlMarca.AutoPostBack = false;                
+                ddlMarca.AutoPostBack = false;
                 return;
             }
             else if (condicion_2)
@@ -155,19 +155,18 @@ namespace CapaPresentacion
                 int marcaSeleccionada = Convert.ToInt32(ddlMarca.SelectedValue);
                 llenarDDLModelos(marcaSeleccionada);
                 ddlMarca.AutoPostBack = true;
-            }           
-        } 
+            }
+        }
 
         protected void ddlMarca_TextChanged(object sender, EventArgs e)
         {
             Response.Write("<script>alert('REGISTRO INCORRECTO11111.')</script>");
         }
 
-        //ScriptMethod(ResponseFormat = ResponseFormat.Json,UseHttpGet = true)
-        [WebMethod]         
+        [WebMethod]
         public static bool AgregarMarca(String marca)
         {
-            bool ok = false;                        
+            bool ok = false;
             try
             {
                 Marca objMarca = new Marca();
@@ -224,6 +223,12 @@ namespace CapaPresentacion
             }
         }
 
+        [WebMethod]
+        public void ListarSistemasOperativosWeb() {
+
+            llenarDDLSO();
+
+        }
     }
 
 }
