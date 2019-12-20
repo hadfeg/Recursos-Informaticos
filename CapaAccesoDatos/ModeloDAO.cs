@@ -9,23 +9,21 @@ using System.Data.SqlClient;
 
 namespace CapaAccesoDatos
 {
-    public class MarcaDAO
+    public class ModeloDAO
     {
-
         #region "PATRON SINGLETON"
-        private static MarcaDAO daoMarca = null;
-        private MarcaDAO() { }
-        public static MarcaDAO getInstance()
+        private static ModeloDAO daoModelo = null;
+        private ModeloDAO() { }
+        public static ModeloDAO getInstance()
         {
-            if (daoMarca == null)
+            if (daoModelo == null)
             {
-                daoMarca = new MarcaDAO();
+                daoModelo = new ModeloDAO();
             }
-            return daoMarca;
+            return daoModelo;
         }
         #endregion
-
-        public bool RegistrarMarca(Marca objMarca )
+        public bool RegistrarModelo(Modelo objModelo)
         {
             SqlConnection con = null;
             SqlCommand cmd = null;
@@ -33,9 +31,10 @@ namespace CapaAccesoDatos
             try
             {
                 con = Conexion.getInstance().ConexionBD();
-                cmd = new SqlCommand("spRegistrarMarca", con);
+                cmd = new SqlCommand("spRegistrarModelo", con);
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@prmMarca", objMarca.marca);               
+                cmd.Parameters.AddWithValue("@prmNombreModelo", objModelo.NombreModelo);
+                cmd.Parameters.AddWithValue("@prmMarcaId", objModelo.MarcaId);
                 con.Open();
 
                 int filas = cmd.ExecuteNonQuery();
@@ -52,28 +51,24 @@ namespace CapaAccesoDatos
             }
             return response;
         }
-        /*
-        public List<Marca> ListarMarcas()
+
+        public DataSet ListarModelos(int idMarca, String nombreModelo)
         {
-            List<Marca> Lista = new List<Marca>();
             SqlConnection con = null;
             SqlCommand cmd = null;
-            SqlDataReader dr = null;
+            DataSet ds = null;
+            SqlDataAdapter da = null;
+            string sql = "SELECT * FROM Modelo WHERE IdMarca = @prmIdMarca AND Modelo = @prmModelo";
+            cmd.Parameters.AddWithValue("prmIdMarca", idMarca);
+            cmd.Parameters.AddWithValue("prmModelo", nombreModelo);
             try
-            {
+            {   
                 con = Conexion.getInstance().ConexionBD();
-                cmd = new SqlCommand("spListarMarcas", con);
-                cmd.CommandType = CommandType.StoredProcedure;
                 con.Open();
-                dr = cmd.ExecuteReader();
-                while (dr.Read())
-                {
-                    // Crear objetos de tipo Usuario
-                    Marca objMarca = new Marca();
-                    objMarca.IdMarca = Convert.ToInt32(dr["IdMarca"].ToString());
-                    objMarca.marca = dr["Marca"].ToString();                    
-                    Lista.Add(objMarca);
-                }
+                cmd = new SqlCommand(sql, con);                
+                da = new SqlDataAdapter(cmd);
+                ds = new DataSet();
+                da.Fill(ds);
             }
             catch (Exception ex)
             {
@@ -83,16 +78,16 @@ namespace CapaAccesoDatos
             {
                 con.Close();
             }
-            return Lista;
-        }*/
+            return ds;
+        }
 
-        public DataSet ListarMarcas()
+        public DataSet ListarModelos()
         {
             SqlConnection con = null;
             SqlCommand cmd = null;
             DataSet ds = null;
             SqlDataAdapter da = null;
-            string sql = "SELECT * FROM Marca";
+            string sql = "SELECT * FROM Modelo";
             try
             {
                 con = Conexion.getInstance().ConexionBD();
@@ -114,6 +109,4 @@ namespace CapaAccesoDatos
         }
 
     }
-
-
 }

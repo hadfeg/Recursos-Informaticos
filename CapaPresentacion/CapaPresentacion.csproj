@@ -6862,6 +6862,7 @@
     <Content Include="AdminLTE-2.4.0\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="AdminLTE-2.4.0\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="AdminLTE-2.4.0\starter.html" />
+    <Content Include="AgregarMarca.aspx" />
     <Content Include="EditarUsuario.aspx" />
     <Content Include="GestionLaptop.aspx" />
     <Content Include="GestionUsuarios.aspx" />
@@ -6886,6 +6887,7 @@
     <Content Include="scripts\jquery-ui.min.js" />
     <Content Include="scripts\jquery.min.js" />
     <Content Include="scripts\jquery.ui.draggable.js" />
+    <Content Include="scripts\Laptop.js" />
     <Content Include="scripts\Usuarios.js" />
     <Content Include="UserImages\c7f38b2e498104a5092e2d659fc358af.jpg" />
     <Content Include="UserImages\CHEERS.jpg" />
@@ -6897,6 +6899,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgregarMarca.aspx.cs">
+      <DependentUpon>AgregarMarca.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarMarca.aspx.designer.cs">
+      <DependentUpon>AgregarMarca.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EditarUsuario.aspx.cs">
       <DependentUpon>EditarUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
