@@ -25,7 +25,7 @@ namespace CapaLogicaNegocio
             return objModelo;
         }
         #endregion
-        ]
+        
         public bool RegistrarModelo(Modelo objModelo)
         {
             try
@@ -38,11 +38,11 @@ namespace CapaLogicaNegocio
             }
         }
 
-        public DataSet ListarModelos(int idMarca, String nombreModelo)
+        public DataSet ListarModelos(int idMarca)
         {
             try
             {
-                return ModeloDAO.getInstance().ListarModelos(idMarca,nombreModelo);
+                return ModeloDAO.getInstance().ListarModelos(idMarca);
             }
             catch (Exception ex)
             {

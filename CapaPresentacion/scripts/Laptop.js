@@ -1,28 +1,16 @@
 ﻿
-           //$(document).ready(function(e){
-          //	$("#ddlMarca").change(function () {
-         //		var value = $('#ddlMarca option:selected').val();
-        //		console.log(value);
-       //		console.log(("#ddlMarca").val());
-      //		var valor = $("ddlMarca").text();
-     //		if (valor == "[NUEVA MARCA]") {
-    //			$('#modalAgregarMarca').modal('show');
-   //		}
-  //	});
- //	e.preventDefault;		
-//});
-$("#ContentPlaceHolder1_ddlMarca").change(function (e) {
+//$("#ContentPlaceHolder1_ddlMarca").change(function (e) {
 
-	var value = $("#ContentPlaceHolder1_ddlMarca option:selected").text();
-	(value == "[NUEVA MARCA]") ? $("#modalAgregarMarca").modal('show') : $("#modalAgregarMarca").modal('hide')
+//	var value = $("#ContentPlaceHolder1_ddlMarca option:selected").text();
+//	(value == "[NUEVA MARCA]") ? $("#modalAgregarMarca").modal('show') : $("#modalAgregarMarca").modal('hide')
 			
-});
+//});
 
 $("#ContentPlaceHolder1_ddlSO").change(function (e) {
 
 	var value = $("#ContentPlaceHolder1_ddlSO option:selected").text();
 	(value == "[NUEVO SISTEMA OPERATIVO]") ? $("#modalAgregarSistemaOperativo").modal('show') : $("#modalAgregarSistemaOperativo").modal('hide')
-
+	
 });
 
 $("#ContentPlaceHolder1_ddlModelo").change(function(e){
@@ -50,6 +38,18 @@ $("#btn_agregarModelo").click(function () {
 	//console.log(nombre);
 });
 
+$("#btn_nuevaMarca").click(function (e) {
+
+	e.preventDefault();
+	$('#modalAgregarMarca').modal('show');
+
+});
+
+
+//$(document).on('click','.btn_nuevaMarca',function(e) {
+//	e.preventDefault();
+//	$('#modalAgregarMarca').modal('show');
+//});
 
 function añadirMarca() {
 
@@ -89,7 +89,7 @@ function añadirSistemaOperativo() {
 		dataType: "json",
 		success: function (response) {
 			alert("Registro insertado de manera correcta.");
-			window.location.reload();
+			location.reload();
 		},
 		error: function (xhr, ajaxOptions, thrownError) {
 			console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
@@ -102,7 +102,7 @@ function añadirModelo() {
 	var res = validateModel();
 	if (res == false) { alert("Estimad@, por favor rellene los campos solicitados !!!"); return false; }
 
-	var obj = JSON.stringify({ nombre: $("#ContentPlaceHolder1_txtNombreModeloModal").val(), marca:$("#ContentPlaceHolder1_ddlModeloMarcaModal option:selected").text() });
+	var obj = JSON.stringify({ modelo: $("#ContentPlaceHolder1_txtNombreModeloModal").val(), marca:$("#ContentPlaceHolder1_ddlModeloMarcaModal option:selected").val() });
 
 	$.ajax({
 		type: "POST",

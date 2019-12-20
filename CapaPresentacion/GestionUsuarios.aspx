@@ -35,13 +35,10 @@
                         <div class="form-group">
                             <label>E-MAIL</label>
                         </div>
-                        <div class="form-group">
-
-                           
+                        <div class="form-group">                           
                             <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" type="email" placeholder="Ej: nombre@gmail.cl"></asp:TextBox>
                             <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator" ControlToValidate="txtEmail" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
                                 Display="Dynamic" ErrorMessage="Correo inválido"></asp:RegularExpressionValidator>
-
                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtEmail" ForeColor="Red" Display="Dynamic" ErrorMessage="Campo Obligatorio"></asp:RequiredFieldValidator>
                         </div>
                     </div>
@@ -110,7 +107,55 @@
             </table>
         </div>
         <br />
-                                
+         <div class="modal fade" id="modalAgregarEmpresa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" style="width:250px" role="document" >
+                    <div class="modal-content" >
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="NombreEmpresaModalLabel" style="text-align: center">AGREGAR EMPRESA</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h5><strong>Nombre</strong></h5>
+                                        <asp:TextBox ID="txtNombreEmpresaModal" runat="server" Text="" CssClass="form-control" Enabled="true" Width="200px"></asp:TextBox>                                
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="btn_agregarEmpresaModal" value ="Submit">Agregar</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_volverEmpresaModal">Volver</button>
+                        </div>
+                     </div>
+                 </div>
+         </div>
+        
+        <div class="modal fade" id="modalAgregarDepartamento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" style="width:250px" role="document" >
+                    <div class="modal-content" >
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="NombreDepartamentoModalLabel" style="text-align: center">AGREGAR DEPARTAMENTO</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <h5><strong>Nombre Departamento: *</strong></h5>
+                                        <asp:TextBox ID="txtNombreDepartamentoModal" runat="server" Text="" CssClass="form-control" Enabled="true" Width="200px"></asp:TextBox>                                
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="btn_agregarDepartamentoModal" value ="Submit">Agregar</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_volverDepartamentoModal">Volver</button>
+                        </div>
+                     </div>
+                 </div>
+         </div>  
         <script language="javascript">
 
             function validarRut(source,arguments) {
@@ -219,4 +264,5 @@
 </section>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
+    <script src="scripts/GestionUsuario.js" type="text/javascript"></script>
 </asp:Content>

@@ -52,15 +52,14 @@ namespace CapaAccesoDatos
             return response;
         }
 
-        public DataSet ListarModelos(int idMarca, String nombreModelo)
+        public DataSet ListarModelos(int idMarca)
         {
             SqlConnection con = null;
             SqlCommand cmd = null;
             DataSet ds = null;
             SqlDataAdapter da = null;
-            string sql = "SELECT * FROM Modelo WHERE IdMarca = @prmIdMarca AND Modelo = @prmModelo";
-            cmd.Parameters.AddWithValue("prmIdMarca", idMarca);
-            cmd.Parameters.AddWithValue("prmModelo", nombreModelo);
+            
+            string sql = "SELECT * FROM Modelo WHERE IdMarca = @prmIdMarca";            
             try
             {   
                 con = Conexion.getInstance().ConexionBD();
@@ -68,6 +67,11 @@ namespace CapaAccesoDatos
                 cmd = new SqlCommand(sql, con);                
                 da = new SqlDataAdapter(cmd);
                 ds = new DataSet();
+                //Parametro 'prmIdMarca' de la consulta declarada en la variable sql.
+                SqlParameter param = new SqlParameter();
+                param.ParameterName = "@prmIdMarca";
+                param.Value = idMarca;
+                cmd.Parameters.Add(param);
                 da.Fill(ds);
             }
             catch (Exception ex)
@@ -87,7 +91,7 @@ namespace CapaAccesoDatos
             SqlCommand cmd = null;
             DataSet ds = null;
             SqlDataAdapter da = null;
-            string sql = "SELECT * FROM Modelo";
+            string sql = "SELECT m.Modelo FROM Modelo m";
             try
             {
                 con = Conexion.getInstance().ConexionBD();

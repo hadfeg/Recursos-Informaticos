@@ -8,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Services;
 
 using CapaEntidades;
 using CapaLogicaNegocio;
@@ -19,20 +20,20 @@ namespace CapaPresentacion
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {                
+            {
                 InicarLLenadoEmpresa();
                 InicarLLenadoDepartamento();
             }
         }
         private void InicarLLenadoEmpresa()
-        {   
+        {
             ddlEmpresa.DataSource = EmpresaLN.getInstance().ListarEmpresa();
             ddlEmpresa.DataTextField = "NombreEmpresa";
             ddlEmpresa.DataValueField = "IdEmpresa";
             ddlEmpresa.DataBind();
             ddlEmpresa.Items.Insert(0, new ListItem("[Seleccione Empresa]"));
             int cant = ddlEmpresa.Items.Count;
-            ddlEmpresa.Items.Insert(cant, new ListItem("[NUEVA EMPRESA]"));            
+            ddlEmpresa.Items.Insert(cant, new ListItem("[NUEVA EMPRESA]"));
         }
         private void InicarLLenadoDepartamento()
         {
@@ -42,13 +43,13 @@ namespace CapaPresentacion
             ddlDepartamento.DataBind();
             ddlDepartamento.Items.Insert(0, new ListItem("[Seleccione Departamento]"));
             int cant = ddlDepartamento.Items.Count;
-            ddlDepartamento.Items.Insert(cant, new ListItem("[NUEVO DEPARTAMENTO]"));            
+            ddlDepartamento.Items.Insert(cant, new ListItem("[NUEVO DEPARTAMENTO]"));
         }
 
         protected void btnRegistrar_Click(object sender, EventArgs e) {
 
             Usuario objUsuario = new Usuario();
-            objUsuario = GetEntity();           
+            objUsuario = GetEntity();
             bool rut_valido = validarRut(objUsuario);
             if (rut_valido)
             {
@@ -66,7 +67,7 @@ namespace CapaPresentacion
             else
             {
                 Response.Write("<script>alert('Rut inválido, por favor intente nuevamente !!!')</script>");
-            }            
+            }
         }
 
         private bool validarRut(Usuario objUser)
@@ -106,9 +107,9 @@ namespace CapaPresentacion
             objUsuario.Name = txtNombre.Text;
             objUsuario.LastName = txtApellido.Text;
             objUsuario.Rol = Convert.ToInt32(rblPerfil.SelectedValue);
-            objUsuario.Mail = txtEmail.Text;            
+            objUsuario.Mail = txtEmail.Text;
             objUsuario.Estado = 0;
-            objUsuario.Departamento =   Convert.ToInt32(ddlDepartamento.SelectedValue);
+            objUsuario.Departamento = Convert.ToInt32(ddlDepartamento.SelectedValue);
             objUsuario.Empresa = Convert.ToInt32(ddlEmpresa.SelectedValue);
 
             /**
@@ -139,6 +140,42 @@ namespace CapaPresentacion
 
         }
 
+        [WebMethod]
+        public static void AgregarEmpresa (String nombreEmpresa) {
+
+            try
+            {
+                Empresa objEmpresa = new Empresa();
+                objEmpresa.NombreEmpresa = nombreEmpresa;
+                EmpresaLN.getInstance().RegistrarEmpresa(objEmpresa);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+                    
+            }
+
+        }
+
+        [WebMethod]
+        public static void AgregarDepartamento(String nombreDepartamento)
+        {
+
+            try
+            {
+                Departamento objDepartamento = new Departamento();
+                objDepartamento.NombreDepartamento = nombreDepartamento;
+                DepartamentoLN.getInstance().RegistrarDepartamento(objDepartamento);
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+
+            }
+
+        }
 
     }
 }

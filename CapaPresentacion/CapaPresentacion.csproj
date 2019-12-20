@@ -6880,6 +6880,7 @@
     <Content Include="PageImages\Vertical.png" />
     <Content Include="PanelGeneral.aspx" />
     <Content Include="scripts\bootstrap.min.js" />
+    <Content Include="scripts\GestionUsuario.js" />
     <Content Include="scripts\jquery-3.1.0.min.js" />
     <Content Include="scripts\jquery-3.4.1.js" />
     <Content Include="scripts\jquery-3.4.1.min.js" />
