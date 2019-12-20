@@ -20,9 +20,12 @@
                         <div class="form-group">
                             <label>MARCA</label>
                         </div>
+
                         <div class="form-group">
-                            <asp:DropDownList ID ="ddlMarca" runat="server" Width="580px" Height="30px" OnSelectedIndexChanged="ddlMarca_SelectedIndexChanged" AutoPostBack="False" EnableViewState="False"></asp:DropDownList>
-                            <!--<asp:TextBox ID="txtMarca" runat="server" Text="" CssClass="form-control" placeholder="Ej: HP"></asp:TextBox>-->
+                            <asp:DropDownList ID ="ddlMarca" runat="server" Width="470px" Height="30px" OnSelectedIndexChanged="ddlMarca_SelectedIndexChanged" AutoPostBack="True" EnableViewState="True"></asp:DropDownList>
+                            <br/>
+                            <button id="btn_nuevaMarca" class="btn btn-primary" style ="height:30px;margin-left:480px;margin-top:-52px">Nueva Marca</button>
+                            <!--<asp:TextBox ID="txtMarca" runat="server" Text="" CssClass="form-control" placeholder="Ej: HP"></asp:TextBox> -->
                         </div>
                         <div class="form-group">
                             <label>PROCESADOR</label>

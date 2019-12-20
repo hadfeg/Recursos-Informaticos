@@ -92,7 +92,7 @@ namespace CapaAccesoDatos
             SqlCommand cmd = null;
             DataSet ds = null;
             SqlDataAdapter da = null;
-            string sql = "SELECT * FROM Marca";
+            string sql = "SELECT * FROM Marca ";
             try
             {
                 con = Conexion.getInstance().ConexionBD();
