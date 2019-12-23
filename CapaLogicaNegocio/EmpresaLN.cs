@@ -45,5 +45,28 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
+        public DataTable ListarEmpresaDDL()
+        {
+            try
+            {
+                return EmpresaDAO.getInstance().ListarEmpresasDDL();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public DataTable ListarUsuarioDDL()
+        {
+            try
+            {
+                return EmpresaDAO.getInstance().ListarEmpresasDDL();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

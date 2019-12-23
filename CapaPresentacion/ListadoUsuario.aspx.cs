@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
 using System.Web.Services;
 using CapaLogicaNegocio;
 using CapaEntidades;
@@ -19,6 +20,7 @@ namespace CapaPresentacion
             InicarLLenadoEmpresaModal();
             InicarLLenadoDepartamentoModal();
             InicarLLenadoPerfilModal();
+            //LlenarDatosDLLModal();
         }
         [WebMethod]
         public static List<UsuarioAJAX> ListarUsuario()
@@ -55,7 +57,6 @@ namespace CapaPresentacion
                 Empresa = Convert.ToInt32(idEmpresa),
                 Departamento = Convert.ToInt32(idDepartamento),
                 Rol = Convert.ToInt32(rol)
-
             };
 
             bool ok = UsuarioLN.getInstance().ActualizarDatosUsuario(objUsuario);
@@ -64,11 +65,26 @@ namespace CapaPresentacion
 
         public void InicarLLenadoEmpresaModal()
         {
-            ddlEmpresaModal.DataSource = EmpresaLN.getInstance().ListarEmpresa();
+            ddlEmpresaModal.DataSource = ObtenerEmpresaRut (txtRutModal.Text);
+                //EmpresaLN.getInstance().ListarEmpresa();
             ddlEmpresaModal.DataTextField = "NombreEmpresa";
             ddlEmpresaModal.DataValueField = "IdEmpresa";
             ddlEmpresaModal.DataBind();                        
-            LlenarDatosDLLModal();
+            //LlenarDatosDLLModal();
+        }
+        [WebMethod]
+        public static List<Empresa> ObtenerEmpresaRut (String rut)
+        {
+            var query = from item in EmpresaLN.getInstance().ListarEmpresaDDL().AsEnumerable()
+                        where Convert.ToString( item["NombreEmpresa"]) == rut
+                        select new Empresa
+                        {
+                            cod = Convert.ToInt32(item["Cod"]),
+                            descripcion = Convert.ToString(item["Ciudad"])
+                        };
+
+            return query.ToList<CiudadEntity>();
+
         }
         private void InicarLLenadoDepartamentoModal()
         {
@@ -76,7 +92,7 @@ namespace CapaPresentacion
             ddlDeptoModal.DataTextField = "NombreDepartamento";
             ddlDeptoModal.DataValueField = "IdDepartamento";
             ddlDeptoModal.DataBind();                       
-            LlenarDatosDLLModal();
+            //LlenarDatosDLLModal();
         }
         private void InicarLLenadoPerfilModal()
         {
@@ -84,17 +100,49 @@ namespace CapaPresentacion
             ddlPerfilModal.DataTextField = "Descripcion";
             ddlPerfilModal.DataValueField = "IdPerfil";
             ddlPerfilModal.DataBind();            
-            LlenarDatosDLLModal();
+            //LlenarDatosDLLModal();
         }
-        [WebMethod]
-        private void LlenarDatosDLLModal()
+        //[WebMethod]
+        //public  static bool LlenarDatosDLLModal(String rut)
+        //{
+        //    //String rut = Session["id"].ToString();
+        //    ListarUsuarios llu = new ListarUsuarios();
+        //    Usuario usuario_actual = UsuarioLN.getInstance().SeleccionarUsuario(rut);
+        //    /* Llenado de los valores actuales del usuario logeado (Dropdown List Empresa y Dropdown List Departamento)*/
+        //    llu.ddlDeptoModal.SelectedValue = usuario_actual.Departamento.ToString();
+        //    //ddlEmpresaModal.SelectedValue = usuario_actual.Empresa.ToString();
+        //    //ddlPerfilModal.SelectedValue = usuario_actual.Rol.ToString();
+        //    return true;
+        //}
+
+        public string LlenarDatosDLLModalRut()
         {
-            String rut = Session["id"].ToString();
-            Usuario usuario_actual = UsuarioLN.getInstance().SeleccionarUsuario(rut);          
-            /* Llenado de los valores actuales del usuario logeado (Dropdown List Empresa y Dropdown List Departamento)*/
-            ddlDeptoModal.SelectedValue = usuario_actual.Departamento.ToString();
-            ddlEmpresaModal.SelectedValue = usuario_actual.Empresa.ToString();
-            ddlPerfilModal.SelectedValue = usuario_actual.Rol.ToString();
+            //String rut = Session["id"].ToString();
+            String rut = txtRutModal.Text;
+            //Usuario usuario_actual = UsuarioLN.getInstance().SeleccionarUsuario(rut);
+            ///* Llenado de los valores actuales del usuario logeado (Dropdown List Empresa y Dropdown List Departamento)*/
+            //InicarLLenadoDepartamentoModal();
+            //ddlDeptoModal.SelectedValue = usuario_actual.Departamento.ToString();
+            //InicarLLenadoEmpresaModal();
+            //ddlEmpresaModal.SelectedValue = usuario_actual.Empresa.ToString();
+            //InicarLLenadoPerfilModal();
+            //ddlPerfilModal.SelectedValue = usuario_actual.Rol.ToString();
+            return rut;
         }
+        public string LlenarDatosDLLModal()
+        {
+            //String rut = Session["id"].ToString();
+            String rut = txtRutModal.Text;
+            //Usuario usuario_actual = UsuarioLN.getInstance().SeleccionarUsuario(rut);
+            ///* Llenado de los valores actuales del usuario logeado (Dropdown List Empresa y Dropdown List Departamento)*/
+            //InicarLLenadoDepartamentoModal();
+            //ddlDeptoModal.SelectedValue = usuario_actual.Departamento.ToString();
+            //InicarLLenadoEmpresaModal();
+            //ddlEmpresaModal.SelectedValue = usuario_actual.Empresa.ToString();
+            //InicarLLenadoPerfilModal();
+            //ddlPerfilModal.SelectedValue = usuario_actual.Rol.ToString();
+            return rut;
+        }
+
     }
 }

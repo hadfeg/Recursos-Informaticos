@@ -16,7 +16,7 @@ function addRow() {
 }
 
 var data, tabla;
-
+//Llenado del DAtaTable
 function addRowDT(data) {
     tabla = $('#tbl_usuarios').dataTable();    
     for (var i = 0; data.length; i++) {
@@ -115,6 +115,7 @@ $(document).on('click', '.btn-edit', function (e) {
     var row = $(this).parent().parent()[0];
     data = tabla.fnGetData(row);
     fillModalData();
+    SendRutDataAjax(); 
     //console.log(data);
 });
 
@@ -139,7 +140,6 @@ $("#btnactualizar").click(function (e) {
 })
 
 function updateDataAjax() {
-
     //var obj = (JSON.stringify({ rut: JSON.stringify(data[0]).replace(/\\"/g, '"'), correo: $("#txtCorreoModal").val() })); 
     var obj = (JSON.stringify({ rut: $("#txtRutModal").val(), correo: $("#txtCorreoModal").val(), nombres: $("#txtNombreModal").val(), apellidos: $("#txtApellidosModal").val(), pass: $("#txtContrasenaModal").val(), idEmpresa: $('#ddlEmpresaModal option:selected').val(), idDepartamento: $('#ddlDeptoModal option:selected').val(), rol: $('#ddlPerfilModal option:selected').val()    }));
     console.log(obj);
@@ -162,5 +162,29 @@ function updateDataAjax() {
     });
 }
 
+//obtener Rut del elemento seleccionado, enviarlo al servidor
+function SendRutDataAjax() {
+    //var obj = (JSON.stringify({ rut: JSON.stringify(data[0]).replace(/\\"/g, '"'), correo: $("#txtCorreoModal").val() })); 
+    var obj = (JSON.stringify({ rut: $("#txtRutModal").val() }));
+    console.log(obj);
+    $.ajax({
+        type: "POST",
+        url: "ListadoUsuario.aspx/LlenarDatosDLLModal",
+        data: obj,
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        error: function (xhr, ajaxOptions, thrownError) {
+            console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+        },
+        success: function (response)
+        {
+            if (response.d) {
+                alert("Funciona!!!");
+            } else {
+                alert("No Funciona!!!");
+            }
+        }
+    });
+}
 // Llamando a la funcion de ajax al cargar el documento
 sendDataAjax();

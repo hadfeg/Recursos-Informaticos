@@ -96,10 +96,10 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
-        public Usuario SeleccionarUsuario(String Rut)
+        public Usuario SeleccionarUsuario(String rut)
         {
             Usuario user = new Usuario();
-            user = UsuarioDAO.getInstance().SeleccionarUsuario(Rut);
+            user = UsuarioDAO.getInstance().SeleccionarUsuario(rut);
             return user;
         }
         public bool Eliminar(String Rut)

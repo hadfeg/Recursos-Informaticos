@@ -77,5 +77,31 @@ namespace CapaAccesoDatos
             }
             return ds;
         }
+        public DataTable ListarEmpresasDDL()
+        {
+            SqlConnection con = null;
+            SqlCommand cmd = null;
+            DataTable ds = null;
+            SqlDataAdapter da = null;
+            string sql = "SELECT * FROM Empresa";
+            try
+            {
+                con = Conexion.getInstance().ConexionBD();
+                con.Open();
+                cmd = new SqlCommand(sql, con);
+                da = new SqlDataAdapter(cmd);
+                ds = new DataTable();
+                da.Fill(ds);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return ds;
+        }
     }
 }
