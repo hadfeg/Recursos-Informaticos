@@ -48,9 +48,11 @@ function sendDataAjax() {
 		}
 	});
 }
+ 
+function deleteDataAjax(data) {
 
-function deleteDataAjax(data){
-	var obj = JSON.stringify({ Rut: JSON.stringify(data) });
+	
+	var obj = JSON.stringify({ rut: data });
 	$.ajax({
 		type: "POST",
 		url: "ListadoUsuario.aspx/EliminarUsuarioLogico",
@@ -63,6 +65,7 @@ function deleteDataAjax(data){
 		success: function (response) {
 			if (response.d) {
 				alert("Registro eliminado de manera correcta.");
+				location.reload();
 			} else {
 				alert("No se pudo eliminar el registro.");
 			}
@@ -111,6 +114,7 @@ function fillModalData() {
 
 // evento click para boton actualizar
 $(document).on('click', '.btn-edit', function (e) {
+
 	e.preventDefault();
 	var row = $(this).parent().parent()[0];
 	data = tabla.fnGetData(row);
@@ -118,6 +122,7 @@ $(document).on('click', '.btn-edit', function (e) {
 	
 	getDepartamento();
 	getEmpresa();
+	getPerfil();
 	
 });
 
@@ -129,9 +134,12 @@ $(document).on('click', '.btn-delete', function (e) {
 	var dataRow = tabla.fnGetData(row);
 	//segundo método: enviar el codigo del usuario al servidor y eliminarlo, renderizar el datatable
 	// paso 1: enviar el id al servidor por medio de ajax
-	deleteDataAjax(dataRow[0]);
+	//deleteDataAjax(dataRow[0]);
 	// paso 2: renderizar el datatable
-	deleteDataAjax(data)
+	//d<zxcvbnm,.
+	var rut = dataRow[0];
+	console.log(rut);
+	deleteDataAjax(rut)
 });
 
 // enviar la informacion al servidor
@@ -218,6 +226,37 @@ function getEmpresa() {
 				currentOption = ddl.options[i].text;
 				console.log(currentOption);
 				if (currentOption == depto) {
+					ddl.options[i].selected = true;
+					break;
+				};
+			};
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+		}
+
+	});
+}
+
+function getPerfil() {
+
+	var rut = $("#txtRutModal").val(); // En primera instancia obtenemos el rut del usuario que se encuentra en la fila seleccionada.
+	var obj = (JSON.stringify({ rut: $("#txtRutModal").val() }));
+
+	$.ajax({
+		type: "POST",
+		url: "ListadoUsuario.aspx/SeleccionarPerfil",
+		data: obj,
+		dataType: "json",
+		contentType: 'application/json; charset=utf-8',
+		success: function (response) {
+			var perfil = response.d;
+			var opcion = $("#ddlPerfilModal option:selected").val();
+			var ddl = document.getElementById("ddlPerfilModal");
+			for (i = 0; i < ddl.options.length; i++) {
+				currentOption = ddl.options[i].value;
+				console.log(currentOption);
+				if (currentOption == perfil) {
 					ddl.options[i].selected = true;
 					break;
 				};
