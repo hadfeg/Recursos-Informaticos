@@ -8,6 +8,7 @@ using System.Web.Services;
 using CapaLogicaNegocio;
 using CapaEntidades;
 using System.Web.Script.Serialization;
+using System.Web.Script.Services;
 //using CapaPresentacion.custom;
 
 namespace CapaPresentacion
@@ -96,5 +97,43 @@ namespace CapaPresentacion
             ddlEmpresaModal.SelectedValue = usuario_actual.Empresa.ToString();
             ddlPerfilModal.SelectedValue = usuario_actual.Rol.ToString();
         }
+
+        [WebMethod]
+        public static String SeleccionarDepartamento(String rut) {
+
+            String departamento = "";
+
+            try
+            {
+                departamento = UsuarioLN.getInstance().SeleccionarDepartamento(rut);
+            }
+            catch (Exception e)
+            {            
+                throw e;
+            } 
+
+            return departamento;            
+                        
+        }
+
+        [WebMethod]
+        public static String SeleccionarEmpresa(String rut)
+        {
+
+            String departamento = "";
+
+            try
+            {
+                departamento = UsuarioLN.getInstance().SeleccionarEmpresa(rut);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return departamento;
+
+        }
+
     }
 }

@@ -115,7 +115,10 @@ $(document).on('click', '.btn-edit', function (e) {
 	var row = $(this).parent().parent()[0];
 	data = tabla.fnGetData(row);
 	fillModalData();
-	//console.log(data);
+	
+	getDepartamento();
+	getEmpresa();
+	
 });
 
 // evento click para boton eliminar
@@ -159,6 +162,71 @@ function updateDataAjax() {
 				alert("No se pudo actualizar el registro.");
 			}
 		}
+	});
+}
+
+function getDepartamento() {
+
+	//var obj = (JSON.stringify({ rut: JSON.stringify(data[0]).replace(/\\"/g, '"'), correo: $("#txtCorreoModal").val() })); 
+	//var obj = (JSON.stringify({ rut: $("#txtRutModal").val(), correo: $("#txtCorreoModal").val(), nombres: $("#txtNombreModal").val(), apellidos: $("#txtApellidosModal").val(), pass: $("#txtContrasenaModal").val(), idEmpresa: $('#ddlEmpresaModal option:selected').val(), idDepartamento: $('#ddlDeptoModal option:selected').val(), rol: $('#ddlPerfilModal option:selected').val() }));
+	//console.log(obj);
+	var rut = $("#txtRutModal").val(); // En primera instancia obtenemos el rut del usuario que se encuentra en la fila seleccionada.
+	var obj = (JSON.stringify({ rut: $("#txtRutModal").val() })); 
+	
+	$.ajax({
+		type: "POST",
+		url: "ListadoUsuario.aspx/SeleccionarDepartamento",
+		data: obj,
+		dataType: "json",
+		contentType: 'application/json; charset=utf-8',
+		success: function (response) {
+					var depto = response.d  ;
+					var opcion = $("#ddlDeptoModal option:selected").text();						
+					var ddl = document.getElementById("ddlDeptoModal");
+					for (i = 0; i < ddl.options.length; i++) {
+						currentOption = ddl.options[i].text;
+						console.log(currentOption);
+						if (currentOption == depto) {
+							ddl.options[i].selected = true;
+							break;
+						};
+					};
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+		} 
+		
+	});
+}
+
+function getEmpresa() {
+
+	var rut = $("#txtRutModal").val(); // En primera instancia obtenemos el rut del usuario que se encuentra en la fila seleccionada.
+	var obj = (JSON.stringify({ rut: $("#txtRutModal").val() }));
+
+	$.ajax({
+		type: "POST",
+		url: "ListadoUsuario.aspx/SeleccionarEmpresa",
+		data: obj,
+		dataType: "json",
+		contentType: 'application/json; charset=utf-8',
+		success: function (response) {
+			var depto = response.d;
+			var opcion = $("#ddlEmpresaModal option:selected").text();
+			var ddl = document.getElementById("ddlEmpresaModal");		
+			for (i = 0; i < ddl.options.length; i++) {
+				currentOption = ddl.options[i].text;
+				console.log(currentOption);
+				if (currentOption == depto) {
+					ddl.options[i].selected = true;
+					break;
+				};
+			};
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+		}
+
 	});
 }
 
