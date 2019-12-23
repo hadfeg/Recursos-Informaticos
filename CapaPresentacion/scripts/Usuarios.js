@@ -63,6 +63,7 @@ function deleteDataAjax(data){
 		success: function (response) {
 			if (response.d) {
 				alert("Registro eliminado de manera correcta.");
+				location.reload();
 			} else {
 				alert("No se pudo eliminar el registro.");
 			}
@@ -118,6 +119,7 @@ $(document).on('click', '.btn-edit', function (e) {
 	
 	getDepartamento();
 	getEmpresa();
+	getPerfil();
 	
 });
 
@@ -218,6 +220,37 @@ function getEmpresa() {
 				currentOption = ddl.options[i].text;
 				console.log(currentOption);
 				if (currentOption == depto) {
+					ddl.options[i].selected = true;
+					break;
+				};
+			};
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+		}
+
+	});
+}
+
+function getPerfil() {
+
+	var rut = $("#txtRutModal").val(); // En primera instancia obtenemos el rut del usuario que se encuentra en la fila seleccionada.
+	var obj = (JSON.stringify({ rut: $("#txtRutModal").val() }));
+
+	$.ajax({
+		type: "POST",
+		url: "ListadoUsuario.aspx/SeleccionarPerfil",
+		data: obj,
+		dataType: "json",
+		contentType: 'application/json; charset=utf-8',
+		success: function (response) {
+			var perfil = response.d;
+			var opcion = $("#ddlPerfilModal option:selected").val();
+			var ddl = document.getElementById("ddlPerfilModal");
+			for (i = 0; i < ddl.options.length; i++) {
+				currentOption = ddl.options[i].value;
+				console.log(currentOption);
+				if (currentOption == perfil) {
 					ddl.options[i].selected = true;
 					break;
 				};

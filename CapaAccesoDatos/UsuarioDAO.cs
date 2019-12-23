@@ -300,13 +300,11 @@ namespace CapaAccesoDatos
             }
             return ok;
         }
-
         public String SeleccionarDepartamento(String rut) {
 
             SqlConnection conexion = null;
             SqlCommand cmd = null;
             SqlDataReader dr = null;
-
             String departamento = "";
 
             try
@@ -333,7 +331,6 @@ namespace CapaAccesoDatos
             return departamento;
 
         }
-
         public String SeleccionarEmpresa(String rut)
         {
 
@@ -366,6 +363,41 @@ namespace CapaAccesoDatos
                 conexion.Close();
             }
             return departamento;
+
+        }
+
+        public int SeleccionarPerfil(String rut)
+        {
+
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+
+            int perfil = 0;
+
+            try
+            {
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("spSeleccionarPerfil", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmRut", rut);
+                conexion.Open();
+                dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    perfil = Convert.ToInt32(dr["Rol"]);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return perfil;
 
         }
     }

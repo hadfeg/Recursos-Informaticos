@@ -10,7 +10,7 @@ using CapaEntidades;
 using System.Web.Script.Serialization;
 using System.Web.Script.Services;
 //using CapaPresentacion.custom;
-
+ 
 namespace CapaPresentacion
 {
     public partial class ListarUsuarios : System.Web.UI.Page
@@ -35,6 +35,7 @@ namespace CapaPresentacion
             }
             return Lista;
         }
+
         [WebMethod]
         public static bool EliminarUsuarioLogico(String rut)
         {
@@ -42,6 +43,7 @@ namespace CapaPresentacion
             bool ok = UsuarioLN.getInstance().Eliminar(rut);            
             return ok;
         }
+
         [WebMethod]
         public static bool ActualizarDatosUsuario(String rut, String correo, String nombres, String apellidos, String pass, String idEmpresa, String idDepartamento, String rol)
         {
@@ -71,6 +73,7 @@ namespace CapaPresentacion
             ddlEmpresaModal.DataBind();                        
             LlenarDatosDLLModal();
         }
+
         private void InicarLLenadoDepartamentoModal()
         {
             ddlDeptoModal.DataSource = DepartamentoLN.getInstance().ListarDepartamento();
@@ -79,6 +82,7 @@ namespace CapaPresentacion
             ddlDeptoModal.DataBind();                       
             LlenarDatosDLLModal();
         }
+
         private void InicarLLenadoPerfilModal()
         {
             ddlPerfilModal.DataSource = PerfilLN.getInstance().ListarPerfil();
@@ -87,6 +91,7 @@ namespace CapaPresentacion
             ddlPerfilModal.DataBind();            
             LlenarDatosDLLModal();
         }
+
         [WebMethod]
         private void LlenarDatosDLLModal()
         {
@@ -132,6 +137,25 @@ namespace CapaPresentacion
             }
 
             return departamento;
+
+        }
+
+        [WebMethod]
+        public static int SeleccionarPerfil(String rut)
+        {
+
+            int perfil;
+
+            try
+            {
+                perfil = UsuarioLN.getInstance().SeleccionarPerfil(rut);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+            return perfil;
 
         }
 

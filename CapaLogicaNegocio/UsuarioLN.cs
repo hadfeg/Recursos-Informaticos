@@ -137,5 +137,17 @@ namespace CapaLogicaNegocio
             }
         }
 
+        public int SeleccionarPerfil(String rut)
+        {
+            try
+            {
+                return UsuarioDAO.getInstance().SeleccionarPerfil(rut);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
     }
 }
