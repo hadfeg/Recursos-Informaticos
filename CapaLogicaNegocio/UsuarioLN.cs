@@ -114,5 +114,28 @@ namespace CapaLogicaNegocio
             }
         }
 
+        public String SeleccionarDepartamento(String rut)
+        {
+            try
+            {
+                return UsuarioDAO.getInstance().SeleccionarDepartamento(rut);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public String SeleccionarEmpresa(String rut)
+        {
+            try {
+                return UsuarioDAO.getInstance().SeleccionarEmpresa(rut);
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
     }
 }

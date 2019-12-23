@@ -300,6 +300,74 @@ namespace CapaAccesoDatos
             }
             return ok;
         }
+
+        public String SeleccionarDepartamento(String rut) {
+
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+
+            String departamento = "";
+
+            try
+            {
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("spSeleccionarDepartamento", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmRut", rut);
+                conexion.Open();
+                dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {                    
+                    departamento = dr["NombreDepartamento"].ToString();                   
+                }
+            }
+            catch (Exception ex)
+            {                
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return departamento;
+
+        }
+
+        public String SeleccionarEmpresa(String rut)
+        {
+
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+
+            String departamento = "";
+
+            try
+            {
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("spSeleccionarEmpresa", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmRut", rut);
+                conexion.Open();
+                dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    departamento = dr["NombreEmpresa"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return departamento;
+
+        }
     }
 
 }
