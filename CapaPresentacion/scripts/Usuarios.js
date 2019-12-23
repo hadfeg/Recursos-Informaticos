@@ -48,9 +48,11 @@ function sendDataAjax() {
 		}
 	});
 }
+ 
+function deleteDataAjax(data) {
 
-function deleteDataAjax(data){
-	var obj = JSON.stringify({ Rut: JSON.stringify(data) });
+	
+	var obj = JSON.stringify({ rut: data });
 	$.ajax({
 		type: "POST",
 		url: "ListadoUsuario.aspx/EliminarUsuarioLogico",
@@ -112,6 +114,7 @@ function fillModalData() {
 
 // evento click para boton actualizar
 $(document).on('click', '.btn-edit', function (e) {
+
 	e.preventDefault();
 	var row = $(this).parent().parent()[0];
 	data = tabla.fnGetData(row);
@@ -131,9 +134,12 @@ $(document).on('click', '.btn-delete', function (e) {
 	var dataRow = tabla.fnGetData(row);
 	//segundo método: enviar el codigo del usuario al servidor y eliminarlo, renderizar el datatable
 	// paso 1: enviar el id al servidor por medio de ajax
-	deleteDataAjax(dataRow[0]);
+	//deleteDataAjax(dataRow[0]);
 	// paso 2: renderizar el datatable
-	deleteDataAjax(data)
+	//d<zxcvbnm,.
+	var rut = dataRow[0];
+	console.log(rut);
+	deleteDataAjax(rut)
 });
 
 // enviar la informacion al servidor
