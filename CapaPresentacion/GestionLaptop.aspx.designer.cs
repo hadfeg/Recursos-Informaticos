@@ -31,15 +31,6 @@ namespace CapaPresentacion {
         protected global::System.Web.UI.WebControls.DropDownList ddlMarca;
         
         /// <summary>
-        /// Control txtMarca.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMarca;
-        
-        /// <summary>
         /// Control txtProcesador.
         /// </summary>
         /// <remarks>
@@ -209,6 +200,15 @@ namespace CapaPresentacion {
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNombreMarca;
+        
+        /// <summary>
+        /// Control btn_agregarMarca.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btn_agregarMarca;
         
         /// <summary>
         /// Control txtNombreSistOpModal.

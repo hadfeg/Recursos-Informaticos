@@ -17,16 +17,20 @@
                         <div class="form-group">
                             <asp:TextBox ID="txtSerie" runat="server" Text="" CssClass="form-control" placeholder="Ej: 5ES85EA#ABA" ></asp:TextBox>
                         </div>
+                        
                         <div class="form-group">
                             <label>MARCA</label>
                         </div>
-
-                        <div class="form-group">
-                            <asp:DropDownList ID ="ddlMarca" runat="server" Width="470px" Height="30px" OnSelectedIndexChanged="ddlMarca_SelectedIndexChanged" AutoPostBack="True" EnableViewState="True"></asp:DropDownList>
-                            <br/>
-                            <button id="btn_nuevaMarca" class="btn btn-primary" style ="height:30px;margin-left:480px;margin-top:-52px">Nueva Marca</button>
-                            <!--<asp:TextBox ID="txtMarca" runat="server" Text="" CssClass="form-control" placeholder="Ej: HP"></asp:TextBox> -->
-                        </div>
+                        <div class="form-group"  id="ddlMarcaForm">                            
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <asp:DropDownList ID="ddlMarca" runat="server" OnSelectedIndexChanged="ddlMarca_SelectedIndexChanged" AutoPostBack="True" EnableViewState="True" CssClass="form-control"></asp:DropDownList>
+                                </div>
+                                <div class="col-md-4">
+                                    <button id="btn_nuevaMarca" class="btn btn-primary form-control">Nueva Marca</button>
+                                </div>
+                            </div>
+                        </div>                        
                         <div class="form-group">
                             <label>PROCESADOR</label>
                         </div>
@@ -43,7 +47,7 @@
                             <label>SISTEMA OPERATIVO</label>                            
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID ="ddlSO" runat="server" Width="580px" Height="30px"></asp:DropDownList>
+                            <asp:DropDownList ID ="ddlSO" runat="server" CssClass="form-control"></asp:DropDownList>
                             <!--<asp:TextBox ID="txtSO" runat="server" Text="" CssClass="form-control" placeholder="Ej: Windows 10, macOSx, etc"></asp:TextBox>-->
                         </div>
                         <div class="form-group">
@@ -80,7 +84,7 @@
                             <label>MODELO</label>
                         </div>
                         <div class="form-group">
-                            <asp:DropDownList ID ="ddlModelo" runat="server" Width="580px" Height="30px"></asp:DropDownList>
+                            <asp:DropDownList ID ="ddlModelo" runat="server" CssClass="form-control"></asp:DropDownList>
                             <!--<asp:TextBox ID="txtModelo" runat="server" Text="" CssClass="form-control" type="text" placeholder="Inspiron 5567"></asp:TextBox>-->
                         </div> 
                         <div class="form-group">
@@ -156,7 +160,8 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="btn_agregarMarca" value ="Submit">Agregar</button>
+                            <asp:Button ID="btn_agregarMarca" runat="server" CssClass="btn btn-primary" Text="Agregar" OnClick="btn_agregarMarca_Click" />
+                            <!--<button type="button" class="btn btn-primary" id="btn_agregarMarca" value ="Submit">Agregar</button>-->
                             <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_volverMarca">Volver</button>
                         </div>
                      </div>
@@ -172,23 +177,22 @@
                         </div>
                         <div class="modal-body">
                             
-                                <div class="form-group">
-                                    
-                                            <h5><strong>Nombre Sistema Operativo*</strong></h5>
-                                            <asp:TextBox ID="txtNombreSistOpModal" Width="350px" runat="server" Text="" CssClass="form-control" Enabled="true"></asp:TextBox> 
-                                        
-                                            <h5><strong>Versión</strong></h5>
-                                            <asp:TextBox ID="txtVersionModal" Width="350px" runat="server" Text="" CssClass="form-control" Enabled="true"></asp:TextBox>
+                            <div class="form-group">
 
-                                            <h5><strong>Service Pack</strong></h5>
-                                            <asp:TextBox ID="txtServicePackModal" Width="350px" runat="server" Text="" CssClass="form-control" Enabled="true"></asp:TextBox>
+                                <h5><strong>Nombre Sistema Operativo*</strong></h5>
+                                <asp:TextBox ID="txtNombreSistOpModal" Width="350px" runat="server" Text="" CssClass="form-control" Enabled="true"></asp:TextBox>
 
-                                            <h5><strong>Suscripción</strong></h5>
-                                            <asp:TextBox ID="txtSuscripcion" Width="350px" runat="server" Text="" CssClass="form-control" Enabled="true"></asp:TextBox>
-                                            <br />
-                                            <h5>Los campos señalados con * son OBLIGATORIOS.</h5>                               
-                                </div>
-                           
+                                <h5><strong>Versión</strong></h5>
+                                <asp:TextBox ID="txtVersionModal" Width="350px" runat="server" Text="" CssClass="form-control" Enabled="true"></asp:TextBox>
+
+                                <h5><strong>Service Pack</strong></h5>
+                                <asp:TextBox ID="txtServicePackModal" Width="350px" runat="server" Text="" CssClass="form-control" Enabled="true"></asp:TextBox>
+
+                                <h5><strong>Suscripción</strong></h5>
+                                <asp:TextBox ID="txtSuscripcion" Width="350px" runat="server" Text="" CssClass="form-control" Enabled="true"></asp:TextBox>
+                                <br />
+                                <h5>Los campos señalados con * son OBLIGATORIOS.</h5>
+                            </div>                           
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" id="btn_agregarSO">Agregar</button>
@@ -218,7 +222,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="modal-footer">
+                        <div class="modal-footer">                            
                             <button type="button" class="btn btn-primary" id="btn_agregarModelo">Agregar</button>
                             <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_volverModelo">Volver</button>
                         </div>

@@ -24,6 +24,7 @@ namespace CapaPresentacion
                 llenarDDLSO();
                 llenarDDLModeloMarcaModal();
             }
+            //llenarDDLMarca();
             //else
             //{
             //    llenarDDLMarca();
@@ -178,6 +179,7 @@ namespace CapaPresentacion
             catch (Exception e) {
                 throw e;
             }
+            
         }
 
         [WebMethod]
@@ -228,6 +230,10 @@ namespace CapaPresentacion
 
             llenarDDLSO();
 
+        }
+        protected void btn_agregarMarca_Click(object sender, EventArgs e)
+        {
+            llenarDDLMarca();
         }
     }
 
