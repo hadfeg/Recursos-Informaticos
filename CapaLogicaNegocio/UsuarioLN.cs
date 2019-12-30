@@ -24,6 +24,7 @@ namespace CapaLogicaNegocio
             return lnUsuario;
         }
         #endregion
+        
         public Usuario AccesoSistema(String user, String pass)
         {
             try
@@ -59,6 +60,7 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
+
         public List<UsuarioAJAX> ListarUsuario()
         {
             try
@@ -70,6 +72,7 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
+
         public bool Actualizar(Usuario objUsuario)
         {
             try
@@ -83,6 +86,7 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
+
         public bool ActualizarDatosUsuario(Usuario objUsuario)
         {
             try
@@ -96,12 +100,14 @@ namespace CapaLogicaNegocio
                 throw ex;
             }
         }
+
         public Usuario SeleccionarUsuario(String Rut)
         {
             Usuario user = new Usuario();
             user = UsuarioDAO.getInstance().SeleccionarUsuario(Rut);
             return user;
         }
+
         public bool Eliminar(String Rut)
         {
             try
@@ -147,6 +153,67 @@ namespace CapaLogicaNegocio
             {
                 throw e;
             }
+        }
+
+        public bool ResetPassword(String correo)
+        {
+            bool ok = false;
+
+            try
+            {
+                ok = UsuarioDAO.getInstance().ResetPassword(correo);
+                return ok;
+            }
+            catch (Exception e) {
+                
+                throw e;
+            }
+
+            
+        }
+
+        public bool IsPasswordResetLinkValid(String GUID) {
+
+            bool ok = false;
+
+            try
+            {
+                ok = UsuarioDAO.getInstance().IsPasswordResetLinkValid(GUID);
+                return ok;
+            }catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public bool ChangePassword(String GUID, String Password) {
+
+            bool ok = false;
+
+            try
+            {
+                ok = UsuarioDAO.getInstance().ChangePassword(GUID,Password);
+                return ok;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
+        
+}
+
+        public bool ExisteCorreo(String correo) {
+
+            try
+            {
+                return UsuarioDAO.getInstance().ExisteCorreo(correo);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+
         }
 
     }

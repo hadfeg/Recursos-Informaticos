@@ -5,7 +5,7 @@
 
 $("#ContentPlaceHolder1_ddlModelo").change(function(e){
 	var value = $("#ContentPlaceHolder1_ddlModelo option:selected").text();
-	(value == "[NUEVO MODELO]") ? $("#modalAgregarModelo").modal('show') : $("#modalAgregarModelo").modal('hide')
+	(value == "[NUEVO MODELO]")? $("#modalAgregarModelo").modal('show') : $("#modalAgregarModelo").modal('hide') 
 });
 
 $("#btn_agregarSO").click(function () {
