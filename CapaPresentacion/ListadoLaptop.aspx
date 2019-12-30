@@ -1,23 +1,25 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ListadoUsuario.aspx.cs" Inherits="CapaPresentacion.ListarUsuarios" ClientIDMode="Static" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ListadoLaptop.aspx.cs" Inherits="CapaPresentacion.ListadoLaptop" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
      <section>
         <br />
-        <h2 style="text-align: center">LISTADO DE USUARIOS</h2>
+        <h2 style="text-align: center">LISTADO DE LAPTOPS</h2>
     </section>
     <!-- Main content -->
-    <section class="content ">
-        <div class="row ">
+    <section class="content">
+        <div class="row">
             <div class="col-xs-12">
-                <div class="box box-primary table-responsive">
+                <div class="box box-primary">
                     <div class="box-body">
-                        <table id="tbl_usuarios" class="table table-bordered table-striped">
+                        <table id="tbl_laptops" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th>RUT</th>
-                                    <th>Nombres</th>
-                                    <th>Apellidos</th>
+                                    <th>SERIE</th>
+                                    <th>MAC</th>
+                                    <th>MARCA Y MODELO</th>
+                                    <th>ID TEAMVIEWER</th>
+                                    <th>NOMBRE LAPTOP</th>
                                     <th>Email</th>
                                     <th>Departamento</th>
                                     <th>Empresa</th>                                    
@@ -45,6 +47,7 @@
         </div>
         <!-- End Datatable -->  
     </section>
+
     <!--MODAL-->
     <div class="modal fade" id="imodalActualizar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">
@@ -110,8 +113,8 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>  
+
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="footer" runat="server">
-    <script src="scripts/Usuarios.js" type="text/javascript"></script>
 </asp:Content>

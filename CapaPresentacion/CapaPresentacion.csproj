@@ -6866,6 +6866,7 @@
     <Content Include="EditarUsuario.aspx" />
     <Content Include="GestionLaptop.aspx" />
     <Content Include="GestionUsuarios.aspx" />
+    <Content Include="ListadoLaptop.aspx" />
     <Content Include="ListadoUsuario.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
@@ -6929,6 +6930,13 @@
     </Compile>
     <Compile Include="GestionUsuarios.aspx.designer.cs">
       <DependentUpon>GestionUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoLaptop.aspx.cs">
+      <DependentUpon>ListadoLaptop.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoLaptop.aspx.designer.cs">
+      <DependentUpon>ListadoLaptop.aspx</DependentUpon>
     </Compile>
     <Compile Include="ListadoUsuario.aspx.cs">
       <DependentUpon>ListadoUsuario.aspx</DependentUpon>

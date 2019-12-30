@@ -259,6 +259,7 @@
               </a>
               <ul class="treeview-menu">
                   <li><a href="GestionLaptop.aspx"><i class="fa  fa-laptop"></i>Nuevo Computador</a></li>
+                  <li><a href="ListadoLaptop.aspx"><i class="fa fa-list"></i>Listado de Laptops</a></li>
                   <li><a href="GestionPerfil.aspx"><i class="fa fa-mobile"></i>Nuevo Celular</a></li>
                   <li><a href="ListadoUsuario.aspx"><i class="fa  fa-print"></i>Nuevo Recurso</a></li>
               </ul>

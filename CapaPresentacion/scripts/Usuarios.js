@@ -49,8 +49,9 @@ function sendDataAjax() {
 	});
 }
  
-function deleteDataAjax(data) {
-	
+
+function deleteDataAjax(data) {	
+
 	var obj = JSON.stringify({ rut: data });
 	$.ajax({
 		type: "POST",
@@ -149,7 +150,8 @@ $(document).on('click', '.btn-delete', function (e) {
 $("#btnactualizar").click(function (e) {
 	e.preventDefault();
 	updateDataAjax();
-	$('#imodalActualizar').modal('hide');
+    $('#imodalActualizar').modal('hide');
+    location.reload();    
 })
 
 function updateDataAjax() {
@@ -170,6 +172,7 @@ function updateDataAjax() {
 			if (response.d) {
 				alert("Registro actualizado de manera correcta.");
 				location.reload();
+
 			} else {
 				alert("No se pudo actualizar el registro.");
 			}
