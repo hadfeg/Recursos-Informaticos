@@ -6862,6 +6862,7 @@
     <Content Include="AdminLTE-2.4.0\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="AdminLTE-2.4.0\plugins\timepicker\bootstrap-timepicker.min.js" />
     <Content Include="AdminLTE-2.4.0\starter.html" />
+    <Content Include="CambiarContraseña.aspx" />
     <Content Include="EditarUsuario.aspx" />
     <Content Include="GestionLaptop.aspx" />
     <Content Include="GestionUsuarios.aspx" />
@@ -6879,6 +6880,7 @@
     <Content Include="PageImages\Vertical Blanco.png" />
     <Content Include="PageImages\Vertical.png" />
     <Content Include="PanelGeneral.aspx" />
+    <Content Include="ResetPassword.aspx" />
     <Content Include="scripts\bootstrap.min.js" />
     <Content Include="scripts\GestionUsuario.js" />
     <Content Include="scripts\jquery-3.1.0.min.js" />
@@ -6889,6 +6891,7 @@
     <Content Include="scripts\jquery.ui.draggable.js" />
     <Content Include="scripts\Laptop.js" />
     <Content Include="scripts\Usuarios.js" />
+    <Content Include="SendEmail.aspx" />
     <Content Include="UserImages\c7f38b2e498104a5092e2d659fc358af.jpg" />
     <Content Include="UserImages\CHEERS.jpg" />
     <Content Include="UserImages\Entrevista Feria.jpeg" />
@@ -6899,6 +6902,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CambiarContraseña.aspx.cs">
+      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CambiarContraseña.aspx.designer.cs">
+      <DependentUpon>CambiarContraseña.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EditarUsuario.aspx.cs">
       <DependentUpon>EditarUsuario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -6956,6 +6966,20 @@
       <DependentUpon>PanelGeneral.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResetPassword.aspx.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ResetPassword.aspx.designer.cs">
+      <DependentUpon>ResetPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SendEmail.aspx.cs">
+      <DependentUpon>SendEmail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SendEmail.aspx.designer.cs">
+      <DependentUpon>SendEmail.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminLTE-2.4.0\.npmignore" />

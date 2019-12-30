@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CapaEntidades;
 using System.Data;
 using System.Data.SqlClient;
+using System.Net.Mail;
 
 namespace CapaAccesoDatos
 {
@@ -23,6 +24,7 @@ namespace CapaAccesoDatos
             return daoUsuario;
         }
         #endregion
+
         public Usuario AccesoSistema(String user, String pass)
         {
             SqlConnection conexion = null;
@@ -58,6 +60,7 @@ namespace CapaAccesoDatos
             }
             return objUsuario;
         }
+
         public bool RegistrarUsuario(Usuario objUsuario)
         {
             SqlConnection con = null;
@@ -96,6 +99,7 @@ namespace CapaAccesoDatos
             }
             return response;
         }
+
         public DataSet ListarPerfil()
         {
             SqlConnection con = null;
@@ -122,6 +126,7 @@ namespace CapaAccesoDatos
             }
             return ds;
         }
+
         public List<UsuarioAJAX> ListarUsuario()
         {
             List<UsuarioAJAX> Lista = new List<UsuarioAJAX>();
@@ -161,6 +166,7 @@ namespace CapaAccesoDatos
             }
             return Lista;
         }
+
         public Usuario SeleccionarUsuario(String rut)
         {
             SqlConnection conexion = null;
@@ -203,6 +209,7 @@ namespace CapaAccesoDatos
             return objUsuario;
 
         }        
+
         public bool ActualizarDatosUsuario(Usuario objUsuario)
         {
             bool ok = false;
@@ -238,6 +245,7 @@ namespace CapaAccesoDatos
             }
             return ok;
         }
+
         public bool Actualizar(Usuario objUsuario)
         {
             bool ok = false;
@@ -274,6 +282,7 @@ namespace CapaAccesoDatos
             }
             return ok;
         }
+
         public bool Eliminar(String Rut)
         {
             SqlConnection conexion = null;
@@ -300,6 +309,7 @@ namespace CapaAccesoDatos
             }
             return ok;
         }
+
         public String SeleccionarDepartamento(String rut) {
 
             SqlConnection conexion = null;
@@ -331,6 +341,7 @@ namespace CapaAccesoDatos
             return departamento;
 
         }
+
         public String SeleccionarEmpresa(String rut)
         {
 
@@ -400,6 +411,219 @@ namespace CapaAccesoDatos
             return perfil;
 
         }
-    }
+
+        public Usuario EncontrarUsuarioEmail(String correo)
+        {
+
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+            Usuario objUsuario = null;
+            SqlDataReader dr = null;
+            try
+            {
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("spEncontrarUsuarioCorreo", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmRut",correo);
+                conexion.Open();
+                dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    objUsuario = new Usuario();
+                    objUsuario.User = dr["Usuario"].ToString();
+                    objUsuario.Pass = dr["Contrasena"].ToString();
+                    objUsuario.UsrImage = dr["UsrImg"].ToString();
+                    objUsuario.Rut = dr["Rut"].ToString();
+                    objUsuario.Empresa = Convert.ToInt32(dr["IdEmpresa"].ToString());
+                    objUsuario.Departamento = Convert.ToInt32(dr["IdDepartamento"].ToString());
+                    objUsuario.Estado = Convert.ToInt32(dr["Estado"].ToString());
+                    objUsuario.Rol = Convert.ToInt32(dr["Rol"].ToString());
+                    objUsuario.LastName = dr["Apellido"].ToString();
+                    objUsuario.Mail = dr["Email"].ToString();
+                    objUsuario.Name = dr["Nombre"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                objUsuario = null;
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return objUsuario;            
+
+        }
+
+        public bool ResetPassword(String correo) {
+
+            bool ok = false;
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+            SqlDataReader dr = null;
+
+            try
+                {
+                    conexion = Conexion.getInstance().ConexionBD();
+                    cmd = new SqlCommand("spResetPassword", conexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@prmEmail", correo);
+                    conexion.Open();
+                    cmd.ExecuteNonQuery();
+                    dr = cmd.ExecuteReader();
+
+                    if (dr.Read())
+                    {
+
+                        if (Convert.ToBoolean(dr["ReturnCode"]))
+                        {
+                            String nombreUsuario = dr["UserName"].ToString();
+                            String idUnico = dr["UniqueId"].ToString();
+
+                            SendPasswordResetEmail(correo,nombreUsuario,idUnico);                                                
+                        }
+                        else
+                        {
+                            return ok;
+                        }
+
+                    }
+                    
+                    ok = true;
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+                return ok;                                  
+        }
+
+        private void SendPasswordResetEmail(String ToEmail, String UserName, String UniqueId)
+        {
+            MailMessage mailMessage = new MailMessage("inversionesfarias.mailmanager@gmail.com", ToEmail);
+
+            StringBuilder sbEmailBody = new StringBuilder();
+            sbEmailBody.Append("Estimad@ " + UserName + ",<br/><br/>");
+            sbEmailBody.Append("Usted ha solicitado un cambio de contraseña, haga click en el siguiente link para realizar el proceso: <br/><br/>");
+            sbEmailBody.Append("http://localhost:1563/ResetPassword.aspx?uid=" + UniqueId + "<br/><br/>");
+            sbEmailBody.Append("<b><i>Inversiones Farías - Departamento TI y Contraloría.</i></b>");
+            mailMessage.IsBodyHtml = true;
+
+            mailMessage.Body = sbEmailBody.ToString();
+            mailMessage.Subject = "Reestablecer Contraseña";
+
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com",587);
+
+            smtpClient.Credentials = new System.Net.NetworkCredential("inversionesfarias.mailmanager@gmail.com", "3192yahima");          
+
+            smtpClient.EnableSsl = true;
+            smtpClient.Send(mailMessage);
+
+        }
+
+        /*Funcion que retorna un tipo de dato bool, que verifica si el link para reestablecer la contraseña es valido.*/
+        public bool IsPasswordResetLinkValid(String GUID) {
+
+                bool ok = false;
+                SqlConnection conexion = null;
+                SqlCommand cmd = null;
+                SqlDataReader dr = null;
+
+                try
+                {
+                    conexion = Conexion.getInstance().ConexionBD();
+                    cmd = new SqlCommand("spIsPasswordResetLinkValid", conexion);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@prmGUID", GUID);
+                    conexion.Open();
+                    cmd.ExecuteScalar();
+
+                    dr = cmd.ExecuteReader();
+
+                    if (dr.Read()) {     
+
+                        if (Convert.ToBoolean(dr["IsValidPasswordResetLink"]))
+                        {
+                            ok = true;
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {                   
+                    throw ex;
+                }
+                finally
+                {
+                    conexion.Close();
+                }
+                return ok;            
+        }
+
+        public bool ChangePassword(String GUID, String Password) {
+
+            bool ok = false;
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+
+            try
+            {
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("spChangePassword", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmGUID", GUID);
+                cmd.Parameters.AddWithValue("@prmPassword", Password);
+                conexion.Open();
+                cmd.ExecuteNonQuery();
+
+                ok = true;
+            }
+            catch (Exception ex)
+            { 
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return ok;
+
+        }
+
+        public bool ExisteCorreo(String correo)
+        {
+            bool ok = false;
+            SqlConnection conexion = null;
+            SqlCommand cmd = null;
+
+            try
+            {
+                conexion = Conexion.getInstance().ConexionBD();
+                cmd = new SqlCommand("spExisteCorreo", conexion);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@prmCorreo", correo);
+                conexion.Open();
+                int filas = Convert.ToInt32(cmd.ExecuteScalar());
+
+                if (filas > 0) { ok = true; }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+            return ok;
+        }
+
+    }    
 
 }

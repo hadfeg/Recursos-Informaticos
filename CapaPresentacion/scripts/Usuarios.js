@@ -50,7 +50,6 @@ function sendDataAjax() {
 }
  
 function deleteDataAjax(data) {
-
 	
 	var obj = JSON.stringify({ rut: data });
 	$.ajax({
@@ -63,11 +62,15 @@ function deleteDataAjax(data) {
 			console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
 		},
 		success: function (response) {
-			if (response.d) {
-				alert("Registro eliminado de manera correcta.");
-				location.reload();
-			} else {
-				alert("No se pudo eliminar el registro.");
+
+
+			if (confirm('¿ Desea confirmar la acción anterior ?')) { 
+				if (response.d) {
+					alert("Registro eliminado de manera correcta.");
+					location.reload();
+				} else {
+					alert("No se pudo eliminar el registro.");
+				}
 			}
 		}
 	});
@@ -166,6 +169,7 @@ function updateDataAjax() {
 		success: function (response) {
 			if (response.d) {
 				alert("Registro actualizado de manera correcta.");
+				location.reload();
 			} else {
 				alert("No se pudo actualizar el registro.");
 			}
