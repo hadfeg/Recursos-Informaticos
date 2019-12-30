@@ -60,7 +60,6 @@ namespace CapaPresentacion
                 Rol = Convert.ToInt32(rol)
 
             };
-
             bool ok = UsuarioLN.getInstance().ActualizarDatosUsuario(objUsuario);
             return ok;
         }
