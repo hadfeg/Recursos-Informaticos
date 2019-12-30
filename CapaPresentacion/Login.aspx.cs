@@ -48,7 +48,7 @@ namespace CapaPresentacion
             }
             else
             {
-                Response.Write("<script>alert('Usuarios Incorrecto')</script>");
+                Response.Write("<script>alert('Usuario incorrecto, intente nuevamente !')</script>");
             }
         }
         private bool LoginCorrecto(string Usuario, string Contrasena)

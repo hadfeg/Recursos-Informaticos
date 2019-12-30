@@ -49,7 +49,6 @@ namespace CapaPresentacion
 
         }
 
-
         protected bool IsPasswordResetLinkValid()
         {
              String GUID = Request.QueryString["uid"];
