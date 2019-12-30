@@ -91,6 +91,32 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modalMensaje2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h3 class='col-12 modal-title text-center'>            
+                         <img src="./PageImages/Isotipo.png" alt="Alternate Text" / style="width:40px;height:40px">                        
+                    </h3>
+                    
+                    <button id="btnCruzCerrar2" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+                    Estimad@, el correo que ha ingresado no se encuentra registrado en nuestra base de datos, verifique por favor !!.
+                </div>
+
+                <div class="modal-footer">
+                    <button id="btnCerrarModalMensaje2" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="modalError" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -197,13 +223,19 @@
             var correo1_valido = correo_expresion_regular.test(correo); // valida si los correos cumplen con el patrón establecido arriba.
             var correo2_valido = correo_expresion_regular.test(confirmacion_correo); // valida si los correos cumplen con el patrón establecido arriba.
             var correos_validos = correo1_valido && correo2_valido;
+            var correoExiste = existeCorreo(correo) == "true";
 
             if (correo == confirmacion_correo) {
-                if (correos_validos) {
-                    if (existeCorreo(correo)) { // Si el correo esta registrado en la base de datos
+                if (correos_validos) { // Si el correo cumple con el 
+                    if (correoExiste) { // Si el correo esta registrado en la base de datos
                         e.preventDefault();
-                        $("#modalMensaje").modal('show');  
+                        $("#modalMensaje").modal('show');
                         enviarCorreo(correo);
+                    } else {
+
+                        e.preventDefault();
+                        $("#modalMensaje2").modal('show');
+
                     }
                 }
             } else {
