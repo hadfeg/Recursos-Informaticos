@@ -36,11 +36,11 @@ namespace CapaPresentacion
             String GUID = Request.QueryString["uid"];
             bool cambio_contraseña = UsuarioLN.getInstance().ChangePassword(GUID,password);
 
-            if (cambio_contraseña) {
-                Response.Write("<script>alert('Cambio de contraseña exitoso !!!')</script>");
-                int milliseconds = 5000;
+            if (cambio_contraseña) {                
+                int milliseconds = 3000;
                 Thread.Sleep(milliseconds);
                 Response.Redirect("./Login.aspx");
+                Response.Write("<script>alert('Cambio de contraseña exitoso !!!')</script>");
             }
             else
             {
