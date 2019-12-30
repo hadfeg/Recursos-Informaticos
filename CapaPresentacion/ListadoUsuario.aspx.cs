@@ -24,6 +24,7 @@ namespace CapaPresentacion
         [WebMethod]
         public static List<UsuarioAJAX> ListarUsuario()
         {
+
             List<UsuarioAJAX> Lista = null;
             try
             {
@@ -34,6 +35,7 @@ namespace CapaPresentacion
                 Lista = null;
             }
             return Lista;
+
         }
 
         [WebMethod]

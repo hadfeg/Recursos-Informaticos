@@ -11,6 +11,7 @@
             <div class="col-md-6">
                 <div class="box box-primary border border-dark rounded">
                     <div class="box-body">
+
                         <div class="form-group">
                             <label>RUT</label>
                         </div>
@@ -32,6 +33,7 @@
                         <div class="form-group">
                             <asp:TextBox ID="txtApellido" runat="server" Text="" CssClass="form-control" placeholder="Ej: Fernández"></asp:TextBox>
                         </div>
+
                         <div class="form-group">
                             <label>E-MAIL</label>
                         </div>
