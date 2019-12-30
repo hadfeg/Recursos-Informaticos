@@ -48,7 +48,7 @@
                         </div>
                         <div class="form-group">
                             <asp:DropDownList ID ="ddlSO" runat="server" CssClass="form-control"></asp:DropDownList>
-                            <!--<asp:TextBox ID="txtSO" runat="server" Text="" CssClass="form-control" placeholder="Ej: Windows 10, macOSx, etc"></asp:TextBox>-->
+                            <!--<asp:TextBox ID="txtSO" runat="server" Text="" CssClass="form-control" placeholder="Ej: Windows 10 , macOSx, etc"></asp:TextBox>-->
                         </div>
                         <div class="form-group">
                             <label>ESTADO</label>
