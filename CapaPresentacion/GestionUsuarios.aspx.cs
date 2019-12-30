@@ -133,6 +133,13 @@ namespace CapaPresentacion
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
+            //txtRut.Text = "";
+            //txtNombre.Text = "";           
+            if (!IsValid)
+            {
+                Response.Redirect("GestionUsuarios.aspx");
+            }
+                
 
         }
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)

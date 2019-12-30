@@ -5,8 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Services;
-
-
 using CapaEntidades;
 using CapaLogicaNegocio;
 using CapaAccesoDatos;
@@ -23,15 +21,7 @@ namespace CapaPresentacion
                 llenarDDLMarca();
                 llenarDDLSO();
                 llenarDDLModeloMarcaModal();
-            }
-            //llenarDDLMarca();
-            //else
-            //{
-            //    llenarDDLMarca();
-            //    llenarDDLSO();
-            //    llenarDDLModeloMarcaModal();
-
-            //}
+            }            
         }
 
         private void llenarDDLModelos(int idMarca)
@@ -130,9 +120,22 @@ namespace CapaPresentacion
             return objLaptop;
         }
 
+        
+
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
-
+            ////Utilities.ResetAllControls(this);
+            //foreach (Control c in this.Controls)
+            //{
+            //    if (c is TextBox)
+            //    {
+            //        c.Text() = "";
+            //    }
+            //    if (c is DropDownList)
+            //    {
+            //        c.SelectedIndex = -1;
+            //    }
+            //}
         }
 
         protected void ddlMarca_SelectedIndexChanged(object sender, EventArgs e)
