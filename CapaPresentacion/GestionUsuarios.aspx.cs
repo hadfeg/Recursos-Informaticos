@@ -159,8 +159,7 @@ namespace CapaPresentacion
             }
             catch (Exception e)
             {
-                throw e;
-                    
+                throw e;                   
             }
 
         }
@@ -168,18 +167,15 @@ namespace CapaPresentacion
         [WebMethod]
         public static void AgregarDepartamento(String nombreDepartamento)
         {
-
             try
             {
                 Departamento objDepartamento = new Departamento();
                 objDepartamento.NombreDepartamento = nombreDepartamento;
                 DepartamentoLN.getInstance().RegistrarDepartamento(objDepartamento);
-
             }
             catch (Exception e)
             {
                 throw e;
-
             }
 
         }
