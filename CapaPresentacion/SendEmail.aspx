@@ -174,19 +174,20 @@
 
             return $.ajax({
 		        type: "POST",
+                async: false,
 		        url: "SendEmail.aspx/ExisteCorreo",
                 contentType: "application/json;charset=utf-8",
                 data: obj,
                 dataType: "json",
 
 		        success: function (data) {
-                    data = true;;
+                    return data;
                     //window.location.reload();
                 },
 
 		        error: function (xhr, ajaxOptions, thrownError) {
                     console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
-                    data = false;
+                    return data;
 		        }
 	        });
 
@@ -197,6 +198,7 @@
             var obj = JSON.stringify({ correo: varcorreo });
 
             $.ajax({
+
 		        type: "POST",
 		        url: "SendEmail.aspx/EnviarCorreo",
                 contentType: "application/json;charset=utf-8",
@@ -210,7 +212,8 @@
 
 		        error: function (xhr, ajaxOptions, thrownError) {
 			        console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
-		        }
+                }
+
 	        }); 
 
         }
@@ -223,7 +226,9 @@
             var correo1_valido = correo_expresion_regular.test(correo); // valida si los correos cumplen con el patrón establecido arriba.
             var correo2_valido = correo_expresion_regular.test(confirmacion_correo); // valida si los correos cumplen con el patrón establecido arriba.
             var correos_validos = correo1_valido && correo2_valido;
-            var correoExiste = existeCorreo(correo) == "true";
+            var correoExiste = (existeCorreo(correo).responseJSON.d);
+
+            //console.log(correoExiste);
 
             if (correo == confirmacion_correo) {
                 if (correos_validos) { // Si el correo cumple con el 
@@ -238,6 +243,7 @@
 
                     }
                 }
+
             } else {
 
                 e.preventDefault();

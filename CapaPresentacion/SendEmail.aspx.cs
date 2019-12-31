@@ -32,14 +32,12 @@ namespace CapaPresentacion
         }
 
         [WebMethod]
-        public static void ExisteCorreo(String correo) {
+        public static bool ExisteCorreo(String correo) {
 
-            UsuarioLN.getInstance().ExisteCorreo(correo);
+            bool existe = UsuarioLN.getInstance().ExisteCorreo(correo);
+            return existe;
 
         }
-
-
-
 
     }
 }
