@@ -91,6 +91,32 @@
         </div>
     </div>
 
+    <div class="modal fade" id="modalMensaje2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h3 class='col-12 modal-title text-center'>            
+                         <img src="./PageImages/Isotipo.png" alt="Alternate Text" / style="width:40px;height:40px">                        
+                    </h3>
+                    
+                    <button id="btnCruzCerrar2" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+
+                </div>
+
+                <div class="modal-body">
+                    Estimad@, usted ha ingresado un correo que no esta registrado en el sistema, verifique su correo por favor !!.
+                </div>
+
+                <div class="modal-footer">
+                    <button id="btnCerrarModalMensaje2" type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="modalError" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -147,20 +173,22 @@
             var obj = JSON.stringify({ correo: varcorreo });
 
             return $.ajax({
-		        type: "POST",
+                type: "POST",
+                async: false,
 		        url: "SendEmail.aspx/ExisteCorreo",
                 contentType: "application/json;charset=utf-8",
                 data: obj,
                 dataType: "json",
 
 		        success: function (data) {
-                    data = true;;
+                                        
+                    return data.d;                    
                     //window.location.reload();
                 },
 
 		        error: function (xhr, ajaxOptions, thrownError) {
-                    console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
-                    data = false;
+                    //console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
+                    return false;
 		        }
 	        });
 
@@ -172,7 +200,7 @@
 
             $.ajax({
 		        type: "POST",
-		        url: "SendEmail.aspx/EnviarCorreo",
+                url: "SendEmail.aspx/EnviarCorreo",                
                 contentType: "application/json;charset=utf-8",
                 data: obj,
                 dataType: "json",
@@ -196,22 +224,35 @@
             var correo_expresion_regular = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
             var correo1_valido = correo_expresion_regular.test(correo); // valida si los correos cumplen con el patrón establecido arriba.
             var correo2_valido = correo_expresion_regular.test(confirmacion_correo); // valida si los correos cumplen con el patrón establecido arriba.
-            var correos_validos = correo1_valido && correo2_valido;
+            var correos_validos = correo1_valido && correo2_valido;            
 
-            if (correo == confirmacion_correo) {
-                if (correos_validos) {
-                    if (existeCorreo(correo)) { // Si el correo esta registrado en la base de datos
+            if (correos_validos) {
+
+                if (correo == confirmacion_correo) {
+
+                    var correoExiste = existeCorreo(correo).responseJSON.d;
+
+                    if (correoExiste) { // Si el correo esta registrado en la base de datos
+
                         e.preventDefault();
-                        $("#modalMensaje").modal('show');  
+                        $("#modalMensaje").modal('show');
                         enviarCorreo(correo);
+
+                    } else {
+
+                        e.preventDefault();
+                        $("#modalMensaje2").modal('show');
+
                     }
+
+                } else {
+                    e.preventDefault();
+                    $("#modalError").modal('show');
                 }
-            } else {
 
-                e.preventDefault();
-                $("#modalError").modal('show');
+            }   
 
-            }           
+            
         });
         
         //$("#modalMensaje").on('hide.bs.modal',function () {

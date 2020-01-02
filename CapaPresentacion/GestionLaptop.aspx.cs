@@ -100,7 +100,7 @@ namespace CapaPresentacion
             String val = ddlMarca.SelectedValue.ToString();
             objLaptop.IdSistOperativo = Convert.ToInt32(ddlSO.SelectedValue);
             objLaptop.IdMarca = Convert.ToInt32(ddlMarca.SelectedValue);
-            objLaptop.HDD = Convert.ToInt32(txtHDD.Text);
+            objLaptop.HDD = (txtHDD.Text);
             /**
             if (NivelAcceso == 1)
             {

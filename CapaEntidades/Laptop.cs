@@ -12,9 +12,11 @@ namespace CapaEntidades
         public String NombreLaptop { get; set; }
         public int IdMarca { get; set; }
         public int IdModelo { get; set; }
+        public int IdSistOperativo { get; set; }
+        public String MAC { get; set; }
         public String Procesador { get; set; }
         public String Ram { get; set; }
-        public int HDD { get; set; }
+        public String HDD { get; set; }
         public int IDTeamviewer { get; set; }
         public DateTime FechaCompra { get; set; }
         public DateTime FechaEntrega { get; set; }      
@@ -22,9 +24,7 @@ namespace CapaEntidades
         //public DateTime FechaSiguienteMantencion { get; set; }
         public String Opcional { get; set; }
         public String Comentario { get; set; }
-        public String Estado { get; set; }
-        public String MAC { get; set; }
-        public int IdSistOperativo { get; set; }
+        public String Estado { get; set; }                
         public String Rut_Usuario { get; set; }       
         public Laptop() { }
     }
