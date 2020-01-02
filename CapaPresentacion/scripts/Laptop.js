@@ -26,12 +26,9 @@ $("#btn_nuevaMarca").click(function (e) {
 $("#ContentPlaceHolder1_btn_agregarMarca").click(function () {
     añadirMarca();
     $("#modalAgregarMarca").modal("toggle"); 
-    __doPostBack($('#ContentPlaceHolder1_ddlMarca.ClientID').attr('name'), ''); 
-        
-    
+    __doPostBack($('#ContentPlaceHolder1_ddlMarca.ClientID').attr('name'), '');             
     //console.log(nombre);
 });
-
 
 //$(document).on('click','.btn_nuevaMarca',function(e) {
 //	e.preventDefault();
@@ -95,6 +92,7 @@ function añadirSistemaOperativo() {
 //}
 
 function añadirModelo() {
+
 	var res = validateModel();
 	if (res == false) { alert("Estimad@, por favor rellene los campos solicitados !!!"); return false; }
 	var obj = JSON.stringify({ modelo: $("#ContentPlaceHolder1_txtNombreModeloModal").val(), marca:$("#ContentPlaceHolder1_ddlModeloMarcaModal option:selected").val() });
@@ -113,6 +111,7 @@ function añadirModelo() {
 			console.log(xhr.status + " \n" + xhr.responseText, "\n" + thrownError);
 		}
 	});
+
 }
 
 function validate() {

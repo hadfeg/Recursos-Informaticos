@@ -33,13 +33,14 @@ namespace CapaAccesoDatos
             SqlDataReader dr = null;
             try
             {
-                conexion = Conexion.getInstance().ConexionBD();
+                conexion = Conexion.getInstance().ConexionBD();                                
                 cmd = new SqlCommand("spAccesoSistema", conexion);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@prmUser", user);
                 cmd.Parameters.AddWithValue("@prmPass", pass);
                 conexion.Open();
                 dr = cmd.ExecuteReader();
+
                 if (dr.Read())
                 {
                     objUsuario = new Usuario();
@@ -48,6 +49,7 @@ namespace CapaAccesoDatos
                     objUsuario.UsrImage = dr["UsrImg"].ToString();
                     objUsuario.Rut = dr["Rut"].ToString();
                 }
+
             }
             catch (Exception ex)
             {
